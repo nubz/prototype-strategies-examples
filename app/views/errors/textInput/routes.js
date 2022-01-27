@@ -120,9 +120,9 @@ router.post('/text-input-regex', (req, res) => {
     fields: {
       'company-name': {
         type: 'optionalString',
-        name: 'your name',
+        name: 'your company name',
         regex: /^[0-9A-Za-z\s-']+$/,
-        patternText: 'Your name must only include letters, numbers, spaces, apostrophes or hyphens'
+        patternText: 'Your company name must only include letters, numbers, spaces, apostrophes or hyphens'
       }
     }
   })

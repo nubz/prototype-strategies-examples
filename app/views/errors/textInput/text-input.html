@@ -17,9 +17,14 @@
       <div class="govuk-form-group{% if errors.inline['company-name'] %} govuk-form-group--error{% endif %}">
         <h1 class="govuk-label-wrapper">
           <label class="govuk-label govuk-label--xl" for="company-name">
-            What is your name?
+            What is your company name?
           </label>
         </h1>
+        {% if hint %}
+          <div class="govuk-hint" id="company-name-hint">
+            {{ hint }}
+          </div>
+        {% endif %}
         {{ errorMacros.inline({errors: errors.inline, key: 'company-name'}) }}
         <input
             class="govuk-input govuk-input--width-10{% if errors.inline['company-name'] %} govuk-input--error{% endif %}"
