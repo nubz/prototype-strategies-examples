@@ -1,4 +1,7 @@
 {% extends "layout_unbranded.html" %}
+{% block pageTitle %}
+{% if errors %} Error: {% endif %}Text input examples - Prototype strategies examples
+{% endblock %}
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
