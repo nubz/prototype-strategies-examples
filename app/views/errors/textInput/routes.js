@@ -7,7 +7,7 @@ const validation = require('@nubz/gds-validation')
 // it here, other examples here do use that way of importing models but these examples
 // do show how to quickly validate a simple post route on an ad-hoc basis
 const templatePath = 'errors/textInput/text-input'
-const homeRoute = '../../'
+const homeRoute = '../'
 
 router.post('/text-input', (req, res) => {
   const errors = validation.getPageErrors(req.body, {
