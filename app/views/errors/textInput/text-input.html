@@ -2,12 +2,16 @@
 {% block pageTitle %}
 {% if errors %} Error: {% endif %}Text input examples - Prototype strategies examples
 {% endblock %}
+
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
     href: "../"
   }) }}
 {% endblock %}
+
+{% set describedby %}{% if hint %}company-name-hint{% endif %}{% if errors %} company-name-error-inline{% endif %}{% endset -%}
+
 {% block content %}
 
 <div class="govuk-grid-row">
@@ -32,6 +36,7 @@
             name="company-name"
             type="text"
             value="{{ data['company-name'] }}"
+            {% if describedby %}aria-describedby="{{ describedby }}"{% endif %}
         >
       </div>
 
