@@ -14,48 +14,30 @@ href: "../"
 {% block content %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">
-        Error handling examples
-      </h1>
-
-      <p class="govuk-body">
-        These examples all make use of this
-        <a href="https://www.npmjs.com/package/@nubz/gds-validation" rel="noreferrer noopener" target="_blank">
-          validation package available via NPM
-        </a> which automates the writing of error messages using GDS error templates and produces errors that can be
-        consumed by existing design system error components such as govukErrorSummary.
-      </p>
-
-      <h2 class="govuk-heading-l">Text input using inline models</h2>
-
-      <p class="govuk-body">See <a class="govuk-link"
-                                   href="https://github.com/nubz/prototype-strategies-examples/blob/main/app/views/errors/textInput"
-                                   rel="noreferrer noopener" target="_blank">the code for the template and the routes.js
-        file</a> which shows these models and route handlers.</p>
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          <a href="textInput/text-input">Simple required text input</a>
-          <p class="govuk-body">Leave blank to trigger error</p>
-        </li>
-        <li>
-          <a href="textInput/text-input-maxLength">Text input with a maximum length</a>
-          <p class="govuk-body">Enter more than 10 characters to trigger error</p>
-        </li>
-        <li>
-          <a href="textInput/text-input-minLength">Text input with a minimum length</a>
-          <p class="govuk-body">Enter fewer than 4 characters to trigger error</p>
-        </li>
-        <li>
-          <a href="textInput/text-input-exactLength">Text input with an exact length</a>
-          <p class="govuk-body">Enter anything other than 3 characters to trigger error</p>
-        </li>
-        <li>
-          <a href="textInput/text-input-regex">Text input with a regular expression</a>
-          <p class="govuk-body">Enter characters other than letters or numbers to trigger error</p>
-        </li>
+    <div class="govuk-grid-column-one-quarter">
+      <ul class="govuk-list">
+        <li><a href="textInput/" class="govuk-link">Text input (simple text)</a></li>
+        <li><a href="" class="govuk-link"></a></li>
+        <li><a href="" class="govuk-link"></a></li>
+        <li><a href="" class="govuk-link"></a></li>
       </ul>
+    </div>
+    <div class="govuk-grid-column-three-quarters">
+      {% if folder %}
+        {% include "./" + folder + "/index.html" %}
+      {% else %}
+        <h1 class="govuk-heading-xl">
+          Error handling examples
+        </h1>
+        <p class="govuk-body">
+          These examples all make use of the
+          <a href="https://www.npmjs.com/package/@nubz/gds-validation" rel="noreferrer noopener" target="_blank">
+            @nubz/gds-validation
+          </a> package available via NPM which automates the writing of error messages using GDS error templates and produces errors that can be
+          consumed by existing design system error components such as govukErrorSummary.
+        </p>
+      {% endif %}
+
     </div>
   </div>
 

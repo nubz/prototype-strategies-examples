@@ -1,14 +1,13 @@
 const router = require('express').Router()
-const { getPageErrors } = require('@nubz/gds-validation')
-// here we import a models file to simplify the router code, models files can
-// also become schemas for task list or whole site validations, a more ad-hoc
-// way for validating only some routes or a single route in our prototypes
-// could be to describe the page models inline instead (see textInputInlineModels)
-const models = require('./models')
+const validation = require('@nubz/gds-validation')
 
 // this router uses the same template throughout, with a variable hint message
+// it also uses inline models in the post routes which does create a lot of code
+// a better strategy might be to create a file to store model definitions and import
+// it here, other examples here do use that way of importing models but these examples
+// do show how to quickly validate a simple post route on an ad-hoc basis
 const templatePath = 'errors/textInput/text-input'
-const homeRoute = './' // we treat returning to demo home as success, i.e. no errors found
+const homeRoute = '../'
 // convenient map of form hints (NOT error messages) to use in our single template, not related to error handling
 // if we didn't use this mechanism there probably would be no GET handlers required for those pages
 const hints = {
@@ -18,21 +17,25 @@ const hints = {
   regex: 'Entering anything other than letters, numbers, spaces or hyphens will produce an error'
 }
 
-router.get('/', (req, res) => {
-  res.render('errors/index', { folder: 'textInput' })
-})
-
 router.get('/required', (req, res) => {
   res.render(templatePath)
 })
 
 router.post('/required', (req, res) => {
-  const errors = getPageErrors(req.body, models.companyNameRequired)
+  const errors = validation.getPageErrors(req.body, {
+    fields: {
+      'company-name': {
+        type: 'nonEmptyString',
+        name: 'your company name'
+      }
+    }
+  })
+
   if (errors.hasErrors) {
-    // re-render same template with errors
-    res.render(templatePath, { errors })
+    res.render(templatePath, {
+      errors: errors
+    })
   } else {
-    // success, page is valid
     res.redirect(homeRoute)
   }
 })
@@ -44,7 +47,16 @@ router.get('/maxLength', (req, res) => {
 })
 
 router.post('/maxLength', (req, res) => {
-  const errors = getPageErrors(req.body, models.companyNameOptionalMaxLength)
+  const errors = validation.getPageErrors(req.body, {
+    fields: {
+      'company-name': {
+        type: 'optionalString',
+        name: 'your company name',
+        maxLength: 10
+      }
+    }
+  })
+
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors: errors,
@@ -62,10 +74,19 @@ router.get('/minLength', (req, res) => {
 })
 
 router.post('/minLength', (req, res) => {
-  const errors = getPageErrors(req.body, models.companyNameOptionalMinLength)
+  const errors = validation.getPageErrors(req.body, {
+    fields: {
+      'company-name': {
+        type: 'optionalString',
+        name: 'your company name',
+        minLength: 4
+      }
+    }
+  })
+
   if (errors.hasErrors) {
     res.render(templatePath, {
-      errors,
+      errors: errors,
       hint: hints.minLength
     })
   } else {
@@ -80,10 +101,19 @@ router.get('/exactLength', (req, res) => {
 })
 
 router.post('/exactLength', (req, res) => {
-  const errors = getPageErrors(req.body, models.companyNameOptionalExactLength)
+  const errors = validation.getPageErrors(req.body, {
+    fields: {
+      'company-name': {
+        type: 'optionalString',
+        name: 'your company name',
+        exactLength: 3
+      }
+    }
+  })
+
   if (errors.hasErrors) {
     res.render(templatePath, {
-      errors,
+      errors: errors,
       hint: hints.exactLength
     })
   } else {
@@ -98,7 +128,17 @@ router.get('/regex', (req, res) => {
 })
 
 router.post('/regex', (req, res) => {
-  const errors = getPageErrors(req.body, models.companyNameOptionalRegex)
+  const errors = validation.getPageErrors(req.body, {
+    fields: {
+      'company-name': {
+        type: 'optionalString',
+        name: 'your company name',
+        regex: /^[0-9A-Za-z\s-']+$/,
+        patternText: 'Your company name must only include letters, numbers, spaces, apostrophes or hyphens'
+      }
+    }
+  })
+
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors: errors,
