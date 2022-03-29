@@ -10,37 +10,37 @@ module.exports = {
       }
     }
   },
-  companyNameOptionalMaxLength: {
+  companyNameMaxLength: {
     fields: {
       'company-name': {
-        type: 'optionalString',
+        type: 'nonEmptyString',
         name: 'your company name',
         maxLength: 10
       }
     }
   },
-  companyNameOptionalMinLength: {
+  companyNameMinLength: {
     fields: {
       'company-name': {
-        type: 'optionalString',
+        type: 'nonEmptyString',
         name: 'your company name',
         minLength: 4
       }
     }
   },
-  companyNameOptionalExactLength: {
+  companyNameExactLength: {
     fields: {
       'company-name': {
-        type: 'optionalString',
+        type: 'nonEmptyString',
         name: 'your company name',
         exactLength: 3
       }
     }
   },
-  companyNameOptionalRegex: {
+  companyNameRegex: {
     fields: {
       'company-name': {
-        type: 'optionalString',
+        type: 'nonEmptyString',
         name: 'your company name',
         regex: /^[0-9A-Za-z\s-']+$/,
         patternText: 'Your company name must only include letters, numbers, spaces, apostrophes or hyphens'

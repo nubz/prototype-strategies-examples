@@ -44,7 +44,7 @@ router.get('/maxLength', (req, res) => {
 })
 
 router.post('/maxLength', (req, res) => {
-  const errors = getPageErrors(req.body, models.companyNameOptionalMaxLength)
+  const errors = getPageErrors(req.body, models.companyNameMaxLength)
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors: errors,
@@ -62,7 +62,7 @@ router.get('/minLength', (req, res) => {
 })
 
 router.post('/minLength', (req, res) => {
-  const errors = getPageErrors(req.body, models.companyNameOptionalMinLength)
+  const errors = getPageErrors(req.body, models.companyNameMinLength)
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors,
@@ -80,7 +80,7 @@ router.get('/exactLength', (req, res) => {
 })
 
 router.post('/exactLength', (req, res) => {
-  const errors = getPageErrors(req.body, models.companyNameOptionalExactLength)
+  const errors = getPageErrors(req.body, models.companyNameExactLength)
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors,
@@ -98,7 +98,7 @@ router.get('/regex', (req, res) => {
 })
 
 router.post('/regex', (req, res) => {
-  const errors = getPageErrors(req.body, models.companyNameOptionalRegex)
+  const errors = getPageErrors(req.body, models.companyNameRegex)
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors: errors,

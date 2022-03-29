@@ -14,14 +14,6 @@ href: "../"
 {% block content %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-quarter">
-      <ul class="govuk-list">
-        <li><a href="textInput/" class="govuk-link">Text input (simple text)</a></li>
-        <li><a href="" class="govuk-link"></a></li>
-        <li><a href="" class="govuk-link"></a></li>
-        <li><a href="" class="govuk-link"></a></li>
-      </ul>
-    </div>
     <div class="govuk-grid-column-three-quarters">
       {% if folder %}
         {% include "./" + folder + "/index.html" %}
@@ -38,6 +30,15 @@ href: "../"
         </p>
       {% endif %}
 
+    </div>
+    <div class="govuk-grid-column-one-quarter">
+      <h2 class="govuk-heading-s app-related-items">Examples</h2>
+      <ul class="govuk-list">
+        <li><a href="textInput/" class="govuk-link">Text input (simple text)</a></li>
+        <li><a href="" class="govuk-link"></a></li>
+        <li><a href="" class="govuk-link"></a></li>
+        <li><a href="" class="govuk-link"></a></li>
+      </ul>
     </div>
   </div>
 
