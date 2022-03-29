@@ -48,7 +48,7 @@ module.exports = {
         type: 'currency',
         name: 'how much you can spend',
         currencyMaxField: 'how much you have in the bank', // this description of the other field will be used in the currencyMaxField error case
-        getMaxCurrencyFromField: 'amountInBank' // this means it must be less than the value of amountInBank, returning the self amount (data.spend) if we cannot evaluate the amountInBank ensures this type of error is not thrown when amountInBank has yet to be completed
+        getMaxCurrencyFromField: 'amountInBank' // this means it must be less than the value of amountInBank
       }
     }
   },
@@ -61,8 +61,8 @@ module.exports = {
       spend: {
         type: 'currency',
         name: 'how much you can spend',
-        currencyMaxField: 'half of what you have in the bank', // this description of the other field will be used in the currencyMaxField error case
-        getMaxCurrencyFromField: data => data.amountInBank ? parseFloat(data.amountInBank) * 0.5 : data.spend
+        currencyMaxField: 'half of what you have in the bank', // this description of the rule encapsulated by the function below
+        getMaxCurrencyFromField: data => data.amountInBank ? parseFloat(data.amountInBank) * 0.5 : data.spend // returning the self amount (data.spend) if we cannot evaluate the amountInBank ensures this type of error is not thrown when amountInBank has yet to be completed
       }
     }
   }
