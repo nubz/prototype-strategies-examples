@@ -16,7 +16,8 @@ const hints = {
   currencyMin: 'Anything you enter below £10 will produce an error',
   exactLength: 'Entering anything other than 3 characters will produce an error',
   betweenMinAndMax: 'Anything you enter below £10 or above £100 will produce an error',
-  currencyMaxField: 'Entering anything above the amount you enter in the "How much do you have in the bank?" field will produce an error'
+  currencyMaxField: 'Entering anything above the amount you enter in the "How much do you have in the bank?" field will produce an error',
+  currencyMaxFieldFn: 'Entering anything above half the amount you enter in  "How much do you have in the bank?" field will produce an error'
 }
 
 router.get('/', (req, res) => {
@@ -99,7 +100,7 @@ router.post('/betweenMinAndMax', (req, res) => {
 })
 
 router.get('/currencyMaxField', (req, res) => {
-  res.render('errors/currencyInput/multiple-text-inputs')
+  res.render('errors/currencyInput/multiple-text-inputs', { hint: hints.currencyMaxField })
 })
 
 router.post('/currencyMaxField', (req, res) => {
@@ -110,7 +111,20 @@ router.post('/currencyMaxField', (req, res) => {
   // will require access to the value of other named fields
   const errors = getPageErrors(req.body, models.canSpendMaxOtherField)
   if (errors.hasErrors) {
-    res.render('errors/currencyInput/multiple-text-inputs', { errors })
+    res.render('errors/currencyInput/multiple-text-inputs', { errors, hint: hints.currencyMaxField })
+  } else {
+    res.redirect(homeRoute)
+  }
+})
+
+router.get('/currencyMaxHalfField', (req, res) => {
+  res.render('errors/currencyInput/multiple-text-inputs', { hint: hints.currencyMaxFieldFn })
+})
+
+router.post('/currencyMaxHalfField', (req, res) => {
+  const errors = getPageErrors(req.body, models.canSpendMaxHalfOtherField)
+  if (errors.hasErrors) {
+    res.render('errors/currencyInput/multiple-text-inputs', { errors, hint: hints.currencyMaxFieldFn })
   } else {
     res.redirect(homeRoute)
   }

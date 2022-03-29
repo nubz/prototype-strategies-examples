@@ -40,16 +40,29 @@ module.exports = {
   },
   canSpendMaxOtherField: {
     fields: {
-      spend: {
-        includeIf: data => data.amountInBank, // here we are saying don't validate unless there is an amount to compare to
-        type: 'currency',
-        name: 'how much you can spend',
-        currencyMaxField: 'how much you have in the bank',
-        getMaxCurrencyFromField: data => data.amountInBank // this means it must be less than the value of amountInBank
-      },
       amountInBank: {
         type: 'currency',
         name: 'how much you have in the bank'
+      },
+      spend: {
+        type: 'currency',
+        name: 'how much you can spend',
+        currencyMaxField: 'how much you have in the bank', // this description of the other field will be used in the currencyMaxField error case
+        getMaxCurrencyFromField: 'amountInBank' // this means it must be less than the value of amountInBank, returning the self amount (data.spend) if we cannot evaluate the amountInBank ensures this type of error is not thrown when amountInBank has yet to be completed
+      }
+    }
+  },
+  canSpendMaxHalfOtherField: {
+    fields: {
+      amountInBank: {
+        type: 'currency',
+        name: 'how much you have in the bank'
+      },
+      spend: {
+        type: 'currency',
+        name: 'how much you can spend',
+        currencyMaxField: 'half of what you have in the bank', // this description of the other field will be used in the currencyMaxField error case
+        getMaxCurrencyFromField: data => data.amountInBank ? parseFloat(data.amountInBank) * 0.5 : data.spend
       }
     }
   }
