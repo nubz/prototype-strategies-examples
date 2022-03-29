@@ -17,23 +17,23 @@
     {{ errorMacros.summary({errors: errors.summary}) }}
     <form action="?" method="post">
       {{ govukInput({
-      id: "spend",
-      name: "spend",
-      label: {
-      text: "How much can you spend?",
-      isPageHeading: true,
-      classes: "govuk-label--xl"
-      },
-      hint: {
-      text: hint
-      },
-      prefix: {
-      text: "£"
-      },
-      errorMessage: errors.inline.spend,
-      classes: "govuk-input--width-5",
-      spellcheck: false,
-      value: data.spend
+        id: "spend",
+        name: "spend",
+        label: {
+          text: "How much can you spend?",
+          isPageHeading: true,
+          classes: "govuk-label--xl"
+        },
+        hint: {
+          text: hint
+        },
+        prefix: {
+          text: "£"
+        },
+        errorMessage: errors.inline.spend,
+        classes: "govuk-input--width-5",
+        spellcheck: false,
+        value: data.spend
       }) }}
 
       <button class="govuk-button" data-module="govuk-button">

@@ -18,43 +18,43 @@ href: "./"
         <h1 class="govuk-heading-xl">Managing money</h1>
         <form action="?" method="post">
             {{ govukInput({
-            id: "amountInBank",
-            name: "amountInBank",
-            label: {
-            text: "How much do you have in the bank?",
-            isPageHeading: false,
-            classes: "govuk-label--m"
-            },
-            hint: {
-            text: 'This will become the maximum for how much you can spend'
-            },
-            prefix: {
-            text: "£"
-            },
-            errorMessage: errors.inline.amountInBank,
-            classes: "govuk-input--width-5",
-            spellcheck: false,
-            value: data.amountInBank
+                id: "amountInBank",
+                name: "amountInBank",
+                label: {
+                    text: "How much do you have in the bank?",
+                    isPageHeading: false,
+                    classes: "govuk-label--m"
+                },
+                hint: {
+                    text: 'This will become the maximum for how much you can spend'
+                },
+                prefix: {
+                    text: "£"
+                },
+                errorMessage: errors.inline.amountInBank,
+                classes: "govuk-input--width-5",
+                spellcheck: false,
+                value: data.amountInBank
             }) }}
 
             {{ govukInput({
-            id: "spend",
-            name: "spend",
-            label: {
-            text: "How much can you spend?",
-            isPageHeading: false,
-            classes: "govuk-label--m"
-            },
-            hint: {
-            text: 'Entering anything more than you told us you had in the bank will trigger an error'
-            },
-            prefix: {
-            text: "£"
-            },
-            errorMessage: errors.inline.spend,
-            classes: "govuk-input--width-5",
-            spellcheck: false,
-            value: data.spend
+                id: "spend",
+                name: "spend",
+                label: {
+                    text: "How much can you spend?",
+                    isPageHeading: false,
+                    classes: "govuk-label--m"
+                },
+                hint: {
+                    text: 'Entering anything more than you told us you had in the bank will trigger an error'
+                },
+                prefix: {
+                    text: "£"
+                },
+                errorMessage: errors.inline.spend,
+                classes: "govuk-input--width-5",
+                spellcheck: false,
+                value: data.spend
             }) }}
 
             <button class="govuk-button" data-module="govuk-button">

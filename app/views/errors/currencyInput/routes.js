@@ -29,6 +29,11 @@ router.get('/required', (req, res) => {
 })
 
 router.post('/required', (req, res) => {
+  // this pattern is repeated throughout all post handlers, first
+  // we call getPageErrors passing in the data containing user answers,
+  // in this case that's all in the request body, alongside the model containing
+  // the rules to validate against, and then see if there are any errors, if so then
+  // render them to the user, if not then move on to whatever we do next
   const errors = getPageErrors(req.body, models.canSpend)
   if (errors.hasErrors) {
     // re-render same template with errors
@@ -98,6 +103,11 @@ router.get('/currencyMaxField', (req, res) => {
 })
 
 router.post('/currencyMaxField', (req, res) => {
+  // in this instance where we refer to another field (in the model), it so happens
+  // that field is on the same page so is contained within the request body
+  // if the field had been from another page or a computed value somewhere
+  // we could pass in req.session.data instead of req.body as the validator
+  // will require access to the value of other named fields
   const errors = getPageErrors(req.body, models.canSpendMaxOtherField)
   if (errors.hasErrors) {
     res.render('errors/currencyInput/multiple-text-inputs', { errors })
