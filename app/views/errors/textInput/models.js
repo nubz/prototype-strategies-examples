@@ -28,6 +28,16 @@ module.exports = {
       }
     }
   },
+  companyNameBetweenMinMax: {
+    fields: {
+      'company-name': {
+        type: 'nonEmptyString',
+        name: 'your company name',
+        minLength: 4,
+        maxLength: 10
+      }
+    }
+  },
   companyNameExactLength: {
     fields: {
       'company-name': {

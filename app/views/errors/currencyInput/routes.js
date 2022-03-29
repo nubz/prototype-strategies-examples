@@ -7,21 +7,21 @@ const { getPageErrors } = require('@nubz/gds-validation')
 const models = require('./models')
 
 // this router uses the same template throughout, with a variable hint message
-const templatePath = 'errors/textInput/text-input'
+const templatePath = 'errors/currencyInput/text-input'
 const homeRoute = './' // we treat returning to demo home as success, i.e. no errors found
 // convenient map of form hints (NOT error messages) to use in our single template, not related to error handling
 // if we didn't use this mechanism there probably would be no GET handlers required for those pages
 const hints = {
-  maxLength: 'Anything you enter above 10 characters long will produce an error',
-  minLength: 'Anything you enter below 4 characters long will produce an error',
+  currencyMax: 'Anything you enter above £500 produce an error',
+  currencyMin: 'Anything you enter below £10 will produce an error',
   exactLength: 'Entering anything other than 3 characters will produce an error',
-  betweenMinAndMax: 'Anything you enter below 4 or longer than 10 characters will produce an error',
-  regex: 'Entering anything other than letters, numbers, spaces or hyphens will produce an error'
+  betweenMinAndMax: 'Anything you enter below £10 or above £100 will produce an error',
+  currencyMaxField: 'Entering anything above the amount you enter in the "How much do you have in the bank?" field will produce an error'
 }
 
 router.get('/', (req, res) => {
   req.session.destroy()
-  res.render('errors/index', { folder: 'textInput' })
+  res.render('errors/index', { folder: 'currencyInput' })
 })
 
 router.get('/required', (req, res) => {
@@ -29,7 +29,7 @@ router.get('/required', (req, res) => {
 })
 
 router.post('/required', (req, res) => {
-  const errors = getPageErrors(req.body, models.companyNameRequired)
+  const errors = getPageErrors(req.body, models.canSpend)
   if (errors.hasErrors) {
     // re-render same template with errors
     res.render(templatePath, { errors })
@@ -39,36 +39,36 @@ router.post('/required', (req, res) => {
   }
 })
 
-router.get('/maxLength', (req, res) => {
+router.get('/currencyMax', (req, res) => {
   res.render(templatePath, {
-    hint: hints.maxLength
+    hint: hints.currencyMax
   })
 })
 
-router.post('/maxLength', (req, res) => {
-  const errors = getPageErrors(req.body, models.companyNameMaxLength)
+router.post('/currencyMax', (req, res) => {
+  const errors = getPageErrors(req.body, models.canSpendMax)
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors: errors,
-      hint: hints.maxLength
+      hint: hints.currencyMax
     })
   } else {
     res.redirect(homeRoute)
   }
 })
 
-router.get('/minLength', (req, res) => {
+router.get('/currencyMin', (req, res) => {
   res.render(templatePath, {
-    hint: hints.minLength
+    hint: hints.currencyMin
   })
 })
 
-router.post('/minLength', (req, res) => {
-  const errors = getPageErrors(req.body, models.companyNameMinLength)
+router.post('/currencyMin', (req, res) => {
+  const errors = getPageErrors(req.body, models.canSpendMin)
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors,
-      hint: hints.minLength
+      hint: hints.currencyMin
     })
   } else {
     res.redirect(homeRoute)
@@ -82,7 +82,7 @@ router.get('/betweenMinAndMax', (req, res) => {
 })
 
 router.post('/betweenMinAndMax', (req, res) => {
-  const errors = getPageErrors(req.body, models.companyNameBetweenMinMax)
+  const errors = getPageErrors(req.body, models.canSpendBetweenMinMax)
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors,
@@ -93,37 +93,14 @@ router.post('/betweenMinAndMax', (req, res) => {
   }
 })
 
-router.get('/exactLength', (req, res) => {
-  res.render(templatePath, {
-    hint: hints.exactLength
-  })
+router.get('/currencyMaxField', (req, res) => {
+  res.render('errors/currencyInput/multiple-text-inputs')
 })
 
-router.post('/exactLength', (req, res) => {
-  const errors = getPageErrors(req.body, models.companyNameExactLength)
+router.post('/currencyMaxField', (req, res) => {
+  const errors = getPageErrors(req.body, models.canSpendMaxOtherField)
   if (errors.hasErrors) {
-    res.render(templatePath, {
-      errors,
-      hint: hints.exactLength
-    })
-  } else {
-    res.redirect(homeRoute)
-  }
-})
-
-router.get('/regex', (req, res) => {
-  res.render(templatePath, {
-    hint: hints.regex
-  })
-})
-
-router.post('/regex', (req, res) => {
-  const errors = getPageErrors(req.body, models.companyNameRegex)
-  if (errors.hasErrors) {
-    res.render(templatePath, {
-      errors: errors,
-      hint: hints.regex
-    })
+    res.render('errors/currencyInput/multiple-text-inputs', { errors })
   } else {
     res.redirect(homeRoute)
   }
