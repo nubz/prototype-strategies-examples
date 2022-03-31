@@ -15,7 +15,7 @@ module.exports = {
       spend: {
         type: 'currency',
         name: 'how much you can spend',
-        currencyMax: 500
+        max: 500
       }
     }
   },
@@ -24,7 +24,7 @@ module.exports = {
       spend: {
         type: 'currency',
         name: 'how much you can spend',
-        currencyMin: 10
+        min: 10
       }
     }
   },
@@ -33,8 +33,8 @@ module.exports = {
       spend: {
         type: 'currency',
         name: 'how much you can spend',
-        currencyMin: 10,
-        currencyMax: 100
+        min: 10,
+        max: 100
       }
     }
   },
@@ -47,8 +47,8 @@ module.exports = {
       spend: {
         type: 'currency',
         name: 'how much you can spend',
-        currencyMaxField: 'how much you have in the bank', // this description of the other field will be used in the currencyMaxField error case
-        getMaxCurrencyFromField: 'amountInBank' // this means it must be less than the value of amountInBank
+        maxDescription: 'how much you have in the bank', // this description of the other field will be used in the currencyMaxField error case
+        max: 'amountInBank' // this means it must be less than the value of amountInBank
       }
     }
   },
@@ -61,8 +61,8 @@ module.exports = {
       spend: {
         type: 'currency',
         name: 'how much you can spend',
-        currencyMaxField: 'half of what you have in the bank', // this description of the rule encapsulated by the function below
-        getMaxCurrencyFromField: data => data.amountInBank ? parseFloat(data.amountInBank) * 0.5 : data.spend // returning the self amount (data.spend) if we cannot evaluate the amountInBank ensures this type of error is not thrown when amountInBank has yet to be completed
+        maxDescription: 'half of what you have in the bank', // this description of the rule encapsulated by the function below
+        max: data => data.amountInBank ? parseFloat(data.amountInBank) * 0.5 : data.spend // returning the self amount (data.spend) if we cannot evaluate the amountInBank ensures this type of error is not thrown when amountInBank has yet to be completed
       }
     }
   }
