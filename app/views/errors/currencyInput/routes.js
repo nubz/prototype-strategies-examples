@@ -26,7 +26,9 @@ router.get('/', (req, res) => {
 })
 
 router.get('/required', (req, res) => {
-  res.render(templatePath)
+  res.render(templatePath, {
+    pageModel: models.canSpend
+  })
 })
 
 router.post('/required', (req, res) => {
@@ -38,7 +40,7 @@ router.post('/required', (req, res) => {
   const errors = getPageErrors(req.body, models.canSpend)
   if (errors.hasErrors) {
     // re-render same template with errors
-    res.render(templatePath, { errors })
+    res.render(templatePath, { errors, pageModel: models.canSpend })
   } else {
     // success, page is valid
     res.redirect(homeRoute)
@@ -47,7 +49,8 @@ router.post('/required', (req, res) => {
 
 router.get('/currencyMax', (req, res) => {
   res.render(templatePath, {
-    hint: hints.currencyMax
+    hint: hints.currencyMax,
+    pageModel: models.canSpendMax
   })
 })
 
@@ -56,7 +59,8 @@ router.post('/currencyMax', (req, res) => {
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors: errors,
-      hint: hints.currencyMax
+      hint: hints.currencyMax,
+      pageModel: models.canSpendMax
     })
   } else {
     res.redirect(homeRoute)
@@ -65,7 +69,8 @@ router.post('/currencyMax', (req, res) => {
 
 router.get('/currencyMin', (req, res) => {
   res.render(templatePath, {
-    hint: hints.currencyMin
+    hint: hints.currencyMin,
+    pageModel: models.canSpendMin
   })
 })
 
@@ -74,7 +79,8 @@ router.post('/currencyMin', (req, res) => {
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors,
-      hint: hints.currencyMin
+      hint: hints.currencyMin,
+      pageModel: models.canSpendMin
     })
   } else {
     res.redirect(homeRoute)
@@ -83,7 +89,8 @@ router.post('/currencyMin', (req, res) => {
 
 router.get('/betweenMinAndMax', (req, res) => {
   res.render(templatePath, {
-    hint: hints.betweenMinAndMax
+    hint: hints.betweenMinAndMax,
+    pageModel: models.canSpendBetweenMinMax
   })
 })
 
@@ -92,7 +99,8 @@ router.post('/betweenMinAndMax', (req, res) => {
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors,
-      hint: hints.betweenMinAndMax
+      hint: hints.betweenMinAndMax,
+      pageModel: models.canSpendBetweenMinMax
     })
   } else {
     res.redirect(homeRoute)
@@ -100,7 +108,10 @@ router.post('/betweenMinAndMax', (req, res) => {
 })
 
 router.get('/currencyMaxField', (req, res) => {
-  res.render('errors/currencyInput/multiple-text-inputs', { hint: hints.currencyMaxField })
+  res.render('errors/currencyInput/multiple-text-inputs', {
+    hint: hints.currencyMaxField,
+    pageModel: models.canSpendMaxOtherField
+  })
 })
 
 router.post('/currencyMaxField', (req, res) => {
@@ -111,20 +122,31 @@ router.post('/currencyMaxField', (req, res) => {
   // will require access to the value of other named fields
   const errors = getPageErrors(req.body, models.canSpendMaxOtherField)
   if (errors.hasErrors) {
-    res.render('errors/currencyInput/multiple-text-inputs', { errors, hint: hints.currencyMaxField })
+    res.render('errors/currencyInput/multiple-text-inputs', {
+      errors,
+      hint: hints.currencyMaxField,
+      pageModel: models.canSpendMaxOtherField
+    })
   } else {
     res.redirect(homeRoute)
   }
 })
 
 router.get('/currencyMaxHalfField', (req, res) => {
-  res.render('errors/currencyInput/multiple-text-inputs', { hint: hints.currencyMaxFieldFn })
+  res.render('errors/currencyInput/multiple-text-inputs', {
+    hint: hints.currencyMaxFieldFn,
+    pageModel: models.canSpendMaxHalfOtherField
+  })
 })
 
 router.post('/currencyMaxHalfField', (req, res) => {
   const errors = getPageErrors(req.body, models.canSpendMaxHalfOtherField)
   if (errors.hasErrors) {
-    res.render('errors/currencyInput/multiple-text-inputs', { errors, hint: hints.currencyMaxFieldFn })
+    res.render('errors/currencyInput/multiple-text-inputs', {
+      errors,
+      hint: hints.currencyMaxFieldFn,
+      pageModel: models.canSpendMaxHalfOtherField
+    })
   } else {
     res.redirect(homeRoute)
   }

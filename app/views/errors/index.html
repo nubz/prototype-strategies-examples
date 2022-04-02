@@ -5,10 +5,10 @@
   Error handling - Prototype strategies examples
 {% endblock %}
 {% block beforeContent %}
-{{ govukBackLink({
-text: "Back",
-href: "../"
-}) }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "../"
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -23,13 +23,15 @@ href: "../"
         </h1>
         <p class="govuk-body">
           These examples all make use of the
-          <a href="https://www.npmjs.com/package/@nubz/gds-validation" rel="noreferrer noopener" target="_blank">
-            @nubz/gds-validation
-          </a> package available via NPM which automates the writing of error messages using GDS error templates and produces errors that can be
+          <a href="https://www.npmjs.com/package/@nubz/gds-validation" rel="noreferrer noopener" target="_blank">@nubz/gds-validation</a>
+          package available via NPM which automates the writing of error messages using GDS error templates and produces errors that can be
           consumed by existing design system error components such as govukErrorSummary.
         </p>
 
-        <p>The template, routing and model code for all examples can be seen on Github.</p>
+        <p>
+          The template, routing and model code for all examples can be
+          <a href="https://github.com/nubz/prototype-strategies-examples/blob/main/app/views/errors/" rel="noreferrer noopener" target="_blank">seen on Github</a>.
+        </p>
       {% endif %}
 
     </div>

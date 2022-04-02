@@ -40,6 +40,10 @@
         Continue
       </button>
     </form>
+    {{ govukDetails({
+      summaryText: "Page model for this validation",
+      html: pageModel | prettyObj
+    }) }}
   </div>
 </div>
 
