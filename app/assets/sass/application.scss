@@ -17,6 +17,16 @@ $govuk-assets-path: '/govuk/assets/';
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
+body > header {
+  background: #4c2c92;
+  color: white;
+  padding: 1em 0;
+  span {
+    font-weight: 700;
+    font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif
+  }
+}
+
 .show-model {
   pre {
     padding: 0.5em;

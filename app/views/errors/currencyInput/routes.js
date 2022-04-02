@@ -97,10 +97,13 @@ router.get('/betweenMinAndMax', (req, res) => {
 router.post('/betweenMinAndMax', (req, res) => {
   const errors = getPageErrors(req.body, models.canSpendBetweenMinMax)
   if (errors.hasErrors) {
+    const demoPageModel = { ...models.canSpendBetweenMinMax }
+    delete demoPageModel.fields.spend.evalMaxValue
+    delete demoPageModel.fields.spend.evalMinValue
     res.render(templatePath, {
       errors,
       hint: hints.betweenMinAndMax,
-      pageModel: models.canSpendBetweenMinMax
+      pageModel: demoPageModel
     })
   } else {
     res.redirect(homeRoute)
@@ -122,10 +125,13 @@ router.post('/currencyMaxField', (req, res) => {
   // will require access to the value of other named fields
   const errors = getPageErrors(req.body, models.canSpendMaxOtherField)
   if (errors.hasErrors) {
+    const demoPageModel = { ...models.canSpendMaxOtherField }
+    delete demoPageModel.fields.spend.evalMaxValue
+    delete demoPageModel.fields.spend.evalMinValue
     res.render('errors/currencyInput/multiple-text-inputs', {
       errors,
       hint: hints.currencyMaxField,
-      pageModel: models.canSpendMaxOtherField
+      pageModel: demoPageModel
     })
   } else {
     res.redirect(homeRoute)
@@ -142,10 +148,15 @@ router.get('/currencyMaxHalfField', (req, res) => {
 router.post('/currencyMaxHalfField', (req, res) => {
   const errors = getPageErrors(req.body, models.canSpendMaxHalfOtherField)
   if (errors.hasErrors) {
+    // here we are doing this for demo purposes only - we are removing
+    // the evaluated values automatically added to the model by the validation
+    const demoPageModel = { ...models.canSpendMaxHalfOtherField }
+    delete demoPageModel.fields.spend.evalMaxValue
+    delete demoPageModel.fields.spend.evalMinValue
     res.render('errors/currencyInput/multiple-text-inputs', {
       errors,
       hint: hints.currencyMaxFieldFn,
-      pageModel: models.canSpendMaxHalfOtherField
+      pageModel: demoPageModel
     })
   } else {
     res.redirect(homeRoute)
