@@ -15,15 +15,20 @@ $govuk-assets-path: '/govuk/assets/';
 @import "patterns/task-list";
 @import "patterns/related-items";
 
-// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
 body > header {
   background: #4c2c92;
   color: white;
   padding: 1em 0;
-  span {
+  a, a:visited, a:link {
     font-weight: 700;
-    font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif
+    font-size: 1.4em;
+    color: white;
+    text-decoration: none;
+    font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
