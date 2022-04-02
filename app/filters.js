@@ -42,6 +42,6 @@ module.exports = function (env) {
   /* ------------------------------------------------------------------
     keep the following line to return your filters to the app
   ------------------------------------------------------------------ */
-  filters.prettyObj = model => `<div class="show-model">Errors passed into this page are returned by: <pre>const errors = getPageErrors(req.body, ${pretty(model, 2, 'PRINT', true)}</pre></div>`
+  filters.prettyObj = model => `<div class="show-model">Errors passed into this page are returned by, where the 2nd argument is the page model: <pre>const errors = getPageErrors(req.body, ${pretty(model, 2, 'PRINT', true)}</pre></div>`
   return filters
 }

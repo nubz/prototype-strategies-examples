@@ -53,7 +53,9 @@ module.exports = {
         type: 'nonEmptyString',
         name: 'your company name',
         regex: /^[0-9A-Za-z\s-']+$/,
-        patternText: 'Your company name must only include letters, numbers, spaces, apostrophes or hyphens'
+        errors: {
+          pattern: 'Company name must only include letters, numbers, spaces, apostrophes or hyphens'
+        }
       }
     }
   }

@@ -25,14 +25,17 @@ router.get('/', (req, res) => {
 })
 
 router.get('/required', (req, res) => {
-  res.render(templatePath)
+  res.render(templatePath, { pageModel: models.companyNameRequired })
 })
 
 router.post('/required', (req, res) => {
   const errors = getPageErrors(req.body, models.companyNameRequired)
   if (errors.hasErrors) {
     // re-render same template with errors
-    res.render(templatePath, { errors })
+    res.render(templatePath, {
+      errors,
+      pageModel: models.companyNameRequired
+    })
   } else {
     // success, page is valid
     res.redirect(homeRoute)
@@ -41,7 +44,8 @@ router.post('/required', (req, res) => {
 
 router.get('/maxLength', (req, res) => {
   res.render(templatePath, {
-    hint: hints.maxLength
+    hint: hints.maxLength,
+    pageModel: models.companyNameMaxLength
   })
 })
 
@@ -50,7 +54,8 @@ router.post('/maxLength', (req, res) => {
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors: errors,
-      hint: hints.maxLength
+      hint: hints.maxLength,
+      pageModel: models.companyNameMaxLength
     })
   } else {
     res.redirect(homeRoute)
@@ -59,7 +64,8 @@ router.post('/maxLength', (req, res) => {
 
 router.get('/minLength', (req, res) => {
   res.render(templatePath, {
-    hint: hints.minLength
+    hint: hints.minLength,
+    pageModel: models.companyNameMinLength
   })
 })
 
@@ -68,7 +74,8 @@ router.post('/minLength', (req, res) => {
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors,
-      hint: hints.minLength
+      hint: hints.minLength,
+      pageModel: models.companyNameMinLength
     })
   } else {
     res.redirect(homeRoute)
@@ -77,7 +84,8 @@ router.post('/minLength', (req, res) => {
 
 router.get('/betweenMinAndMax', (req, res) => {
   res.render(templatePath, {
-    hint: hints.betweenMinAndMax
+    hint: hints.betweenMinAndMax,
+    pageModel: models.companyNameBetweenMinMax
   })
 })
 
@@ -86,7 +94,8 @@ router.post('/betweenMinAndMax', (req, res) => {
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors,
-      hint: hints.betweenMinAndMax
+      hint: hints.betweenMinAndMax,
+      pageModel: models.companyNameBetweenMinMax
     })
   } else {
     res.redirect(homeRoute)
@@ -95,7 +104,8 @@ router.post('/betweenMinAndMax', (req, res) => {
 
 router.get('/exactLength', (req, res) => {
   res.render(templatePath, {
-    hint: hints.exactLength
+    hint: hints.exactLength,
+    pageModel: models.companyNameExactLength
   })
 })
 
@@ -104,7 +114,8 @@ router.post('/exactLength', (req, res) => {
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors,
-      hint: hints.exactLength
+      hint: hints.exactLength,
+      pageModel: models.companyNameExactLength
     })
   } else {
     res.redirect(homeRoute)
@@ -113,7 +124,8 @@ router.post('/exactLength', (req, res) => {
 
 router.get('/regex', (req, res) => {
   res.render(templatePath, {
-    hint: hints.regex
+    hint: hints.regex,
+    pageModel: models.companyNameRegex
   })
 })
 
@@ -122,7 +134,8 @@ router.post('/regex', (req, res) => {
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors: errors,
-      hint: hints.regex
+      hint: hints.regex,
+      pageModel: models.companyNameRegex
     })
   } else {
     res.redirect(homeRoute)
