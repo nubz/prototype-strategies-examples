@@ -44,6 +44,13 @@ router.post('/required', (req, res) => {
   }
 })
 
+router.get('/beforeToday', (req, res) => {
+  res.render(templatePath, {
+    demoModel: demoModel(models.dateBeforeToday), // this is NOT required for your templates - this is purely for demo display
+    dateErrorClasses: dateErrorClasses
+  })
+})
+
 router.post('/beforeToday', (req, res) => {
   const errors = getPageErrors(req.body, models.dateBeforeToday)
   if (errors.hasErrors) {
