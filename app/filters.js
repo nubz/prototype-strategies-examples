@@ -1,47 +1,18 @@
-const pretty = require('js-object-pretty-print').pretty
+const pretty = require('js-object-pretty-print').pretty // for demo display only
 module.exports = function (env) {
-  /**
-   * Instantiate object used to store the methods registered as a
-   * 'filter' (of the same name) within nunjucks. You can override
-   * gov.uk core filters by creating filter methods of the same name.
-   * @type {Object}
-   */
-  var filters = {}
+  const filters = {}
 
-  /* ------------------------------------------------------------------
-    add your methods to the filters obj below this comment block:
-    @example:
-
-    filters.sayHi = function(name) {
-        return 'Hi ' + name + '!'
+  filters.dateErrorClasses = (inputs, key) => {
+    if (key === 'year') {
+      return inputs && inputs.includes(key) ? 'govuk-input--width-4 govuk-input--error' : 'govuk-input--width-4'
     }
 
-    Which in your templates would be used as:
-
-    {{ 'Paul' | sayHi }} => 'Hi Paul'
-
-    Notice the first argument of your filters method is whatever
-    gets 'piped' via '|' to the filter.
-
-    Filters can take additional arguments, for example:
-
-    filters.sayHi = function(name,tone) {
-      return (tone == 'formal' ? 'Greetings' : 'Hi') + ' ' + name + '!'
-    }
-
-    Which would be used like this:
-
-    {{ 'Joel' | sayHi('formal') }} => 'Greetings Joel!'
-    {{ 'Gemma' | sayHi }} => 'Hi Gemma!'
-
-    For more on filters and how to write them see the Nunjucks
-    documentation.
-
-  ------------------------------------------------------------------ */
-
+    return inputs && inputs.includes(key) ? 'govuk-input--width-2 govuk-input--error' : 'govuk-input--width-2'
+  }
   /* ------------------------------------------------------------------
-    keep the following line to return your filters to the app
+    This is for demo code only - NOT required for validating templates
   ------------------------------------------------------------------ */
   filters.prettyObj = model => `<div class="show-model"><em>Errors passed into this page are returned by this assignment in the route handler, where the 2nd argument is the page model:</em> <pre>const errors = getPageErrors(req.body, ${pretty(model, 2, 'PRINT', true)}</pre></div>`
+
   return filters
 }

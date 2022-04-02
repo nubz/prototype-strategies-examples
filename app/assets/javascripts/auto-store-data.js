@@ -1,9 +1,9 @@
 /* global $ */
 $('body').on('submit', 'form', function (e) {
-  // On form submit, add hidden inputs for checkboxes so the server knows if
-  // they've been unchecked. This means we can automatically store and update
-  // all form data on the server, including checkboxes that are checked, then
-  // later unchecked
+ // On form submit, add hidden inputs for checkboxes so the server knows if
+ // they've been unchecked. This means we can automatically store and update
+ // all form data on the server, including checkboxes that are checked, then
+ // later unchecked
 
   var $checkboxes = $(this).find('input:checkbox')
 

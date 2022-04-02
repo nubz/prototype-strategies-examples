@@ -117,10 +117,10 @@ if (useDocumentation) {
 
   nunjucksConfig.express = documentationApp
   var nunjucksDocumentationEnv = nunjucks.configure(documentationViews, nunjucksConfig)
-  // Nunjucks filters
+ // Nunjucks filters
   utils.addNunjucksFilters(nunjucksDocumentationEnv)
 
-  // Set views engine
+ // Set views engine
   documentationApp.set('view engine', 'html')
 }
 
@@ -140,13 +140,13 @@ if (useV6) {
   nunjucksConfig.express = v6App
   var nunjucksV6Env = nunjucks.configure(v6Views, nunjucksConfig)
 
-  // Nunjucks filters
+ // Nunjucks filters
   utils.addNunjucksFilters(nunjucksV6Env)
 
-  // Set views engine
+ // Set views engine
   v6App.set('view engine', 'html')
 
-  // Backward compatibility with GOV.UK Elements
+ // Backward compatibility with GOV.UK Elements
   app.use('/public/v6/', express.static(path.join(__dirname, '/node_modules/govuk_template_jinja/assets')))
   app.use('/public/v6/', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit')))
   app.use('/public/v6/javascripts/govuk/', express.static(path.join(__dirname, '/node_modules/govuk_frontend_toolkit/javascripts/govuk/')))
@@ -213,15 +213,15 @@ if (promoMode === 'true') {
     res.redirect('/docs')
   })
 
-  // Allow search engines to index the Prototype Kit promo site
+ // Allow search engines to index the Prototype Kit promo site
   app.get('/robots.txt', function (req, res) {
     res.type('text/plain')
     res.send('User-agent: *\nAllow: /')
   })
 } else {
-  // Prevent search indexing
+ // Prevent search indexing
   app.use(function (req, res, next) {
-    // Setting headers stops pages being indexed even if indexed pages link to them.
+   // Setting headers stops pages being indexed even if indexed pages link to them.
     res.setHeader('X-Robots-Tag', 'noindex')
     next()
   })
@@ -242,28 +242,28 @@ if (typeof (routes) !== 'function') {
 }
 
 if (useDocumentation) {
-  // Clone app locals to documentation app locals
-  // Use Object.assign to ensure app.locals is cloned to prevent additions from
-  // updating the original app.locals
+ // Clone app locals to documentation app locals
+ // Use Object.assign to ensure app.locals is cloned to prevent additions from
+ // updating the original app.locals
   documentationApp.locals = Object.assign({}, app.locals)
   documentationApp.locals.serviceName = 'Prototype Kit'
 
-  // Create separate router for docs
+ // Create separate router for docs
   app.use('/docs', documentationApp)
 
-  // Docs under the /docs namespace
+ // Docs under the /docs namespace
   documentationApp.use('/', documentationRoutes)
 }
 
 if (useV6) {
-  // Clone app locals to v6 app locals
+ // Clone app locals to v6 app locals
   v6App.locals = Object.assign({}, app.locals)
   v6App.locals.asset_path = '/public/v6/'
 
-  // Create separate router for v6
+ // Create separate router for v6
   app.use('/', v6App)
 
-  // Docs under the /docs namespace
+ // Docs under the /docs namespace
   v6App.use('/', v6Routes)
 }
 
@@ -284,7 +284,7 @@ app.get(/^([^.]+)$/, function (req, res, next) {
 })
 
 if (useDocumentation) {
-  // Documentation  routes
+ // Documentation  routes
   documentationApp.get(/^([^.]+)$/, function (req, res, next) {
     if (!utils.matchMdRoutes(req, res)) {
       utils.matchRoutes(req, res, next)
@@ -293,7 +293,7 @@ if (useDocumentation) {
 }
 
 if (useV6) {
-  // App folder routes get priority
+ // App folder routes get priority
   v6App.get(/^([^.]+)$/, function (req, res, next) {
     utils.matchRoutes(req, res, next)
   })

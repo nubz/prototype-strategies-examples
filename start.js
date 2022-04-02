@@ -11,7 +11,7 @@ const usageData = require('./lib/usage_data')
 const usageDataConfig = usageData.getUsageDataConfig()
 
 if (usageDataConfig.collectUsageData === undefined) {
-  // No recorded answer, so ask for permission
+ // No recorded answer, so ask for permission
   const promptPromise = usageData.askForUsageDataPermission()
   promptPromise.then(function (permissionGranted) {
     usageDataConfig.collectUsageData = permissionGranted
@@ -24,11 +24,11 @@ if (usageDataConfig.collectUsageData === undefined) {
     runGulp()
   })
 } else if (usageDataConfig.collectUsageData === true) {
-  // Opted in
+ // Opted in
   usageData.startTracking(usageDataConfig)
   runGulp()
 } else {
-  // Opted out
+ // Opted out
   runGulp()
 }
 
@@ -40,7 +40,7 @@ function checkFiles () {
     process.exit(0)
   }
 
-  // Create template .env file if it doesn't exist
+ // Create template .env file if it doesn't exist
   const envExists = fs.existsSync(path.join(__dirname, '/.env'))
   if (!envExists) {
     fs.createReadStream(path.join(__dirname, '/lib/template.env'))

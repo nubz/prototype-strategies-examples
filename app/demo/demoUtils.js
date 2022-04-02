@@ -22,6 +22,8 @@ const demoModel = obj => {
   return Object.keys(stripped.fields).reduce((list, next) => {
     delete stripped.fields[next].evalMaxValue
     delete stripped.fields[next].evalMinValue
+    delete stripped.fields[next].evalAfterDateValue
+    delete stripped.fields[next].evalBeforeDateValue
     return stripped.fields
   }, {})
 }

@@ -34,7 +34,7 @@ router.post('/required', (req, res) => {
     // re-render same template with errors
     res.render(templatePath, {
       errors, // we need to pass in the errors for use by the template
-      demoModel: demoModel(models.canSpend) // NOT required for templates - this is purely for demo display
+      demoModel: demoModel(models.canSpend) // NOT required for validating models - this is purely for demo display
     })
   } else {
     // success, page is valid
@@ -44,8 +44,8 @@ router.post('/required', (req, res) => {
 
 router.get('/currencyMax', (req, res) => {
   res.render(templatePath, {
-    hint: currencyInputHints.currencyMax, // NOT required for templates - this is purely for demo display
-    demoModel: demoModel(models.canSpendMax) // NOT required for templates - this is purely for demo display
+    hint: currencyInputHints.currencyMax, // NOT required for validating models - this is purely for demo display
+    demoModel: demoModel(models.canSpendMax) // NOT required for validating models - this is purely for demo display
   })
 })
 
@@ -54,8 +54,8 @@ router.post('/currencyMax', (req, res) => {
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors: errors, // we need to pass in the errors for use by the template
-      hint: currencyInputHints.currencyMax, // NOT required for templates - this is purely for demo display
-      demoModel: demoModel(models.canSpendMax) // NOT required for templates - this is purely for demo display
+      hint: currencyInputHints.currencyMax, // NOT required for validating models - this is purely for demo display
+      demoModel: demoModel(models.canSpendMax) // NOT required for validating models - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)
@@ -64,8 +64,8 @@ router.post('/currencyMax', (req, res) => {
 
 router.get('/currencyMin', (req, res) => {
   res.render(templatePath, {
-    hint: currencyInputHints.currencyMin, // NOT required for templates - this is purely for demo display
-    demoModel: demoModel(models.canSpendMin) // NOT required for templates - this is purely for demo display
+    hint: currencyInputHints.currencyMin, // NOT required for validating models - this is purely for demo display
+    demoModel: demoModel(models.canSpendMin) // NOT required for validating models - this is purely for demo display
   })
 })
 
@@ -74,8 +74,8 @@ router.post('/currencyMin', (req, res) => {
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors, // we need to pass in the errors for use by the template
-      hint: currencyInputHints.currencyMin, // NOT required for templates - this is purely for demo display
-      demoModel: demoModel(models.canSpendMin) // NOT required for templates - this is purely for demo display
+      hint: currencyInputHints.currencyMin, // NOT required for validating models - this is purely for demo display
+      demoModel: demoModel(models.canSpendMin) // NOT required for validating models - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)
@@ -84,8 +84,8 @@ router.post('/currencyMin', (req, res) => {
 
 router.get('/betweenMinAndMax', (req, res) => {
   res.render(templatePath, {
-    hint: currencyInputHints.betweenMinAndMax, // NOT required for templates - this is purely for demo display
-    demoModel: demoModel(models.canSpendBetweenMinMax) // NOT required for templates - this is purely for demo display
+    hint: currencyInputHints.betweenMinAndMax, // NOT required for validating models - this is purely for demo display
+    demoModel: demoModel(models.canSpendBetweenMinMax) // NOT required for validating models - this is purely for demo display
   })
 })
 
@@ -94,8 +94,8 @@ router.post('/betweenMinAndMax', (req, res) => {
   if (errors.hasErrors) {
     res.render(templatePath, {
       errors, // we need to pass in the errors for use by the template
-      hint: currencyInputHints.betweenMinAndMax, // NOT required for templates - this is purely for demo display
-      demoModel: demoModel(models.canSpendBetweenMinMax) // NOT required for templates - this is purely for demo display
+      hint: currencyInputHints.betweenMinAndMax, // NOT required for validating models - this is purely for demo display
+      demoModel: demoModel(models.canSpendBetweenMinMax) // NOT required for validating models - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)
@@ -104,8 +104,8 @@ router.post('/betweenMinAndMax', (req, res) => {
 
 router.get('/currencyMaxField', (req, res) => {
   res.render('errors/currencyInput/multiple-text-inputs', {
-    hint: currencyInputHints.currencyMaxField, // NOT required for templates - this is purely for demo display
-    demoModel: demoModel(models.canSpendMaxOtherField) // NOT required for templates - this is purely for demo display
+    hint: currencyInputHints.currencyMaxField, // NOT required for validating models - this is purely for demo display
+    demoModel: demoModel(models.canSpendMaxOtherField) // NOT required for validating models - this is purely for demo display
   })
 })
 
@@ -119,8 +119,8 @@ router.post('/currencyMaxField', (req, res) => {
   if (errors.hasErrors) {
     res.render('errors/currencyInput/multiple-text-inputs', {
       errors, // we need to pass in the errors for use by the template
-      hint: currencyInputHints.currencyMaxField, // NOT required for templates - this is purely for demo display
-      demoModel: demoModel(models.canSpendMaxOtherField) // NOT required for templates - this is purely for demo display
+      hint: currencyInputHints.currencyMaxField, // NOT required for validating models - this is purely for demo display
+      demoModel: demoModel(models.canSpendMaxOtherField) // NOT required for validating models - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)
@@ -129,8 +129,8 @@ router.post('/currencyMaxField', (req, res) => {
 
 router.get('/currencyMaxHalfField', (req, res) => {
   res.render('errors/currencyInput/multiple-text-inputs', {
-    hint: currencyInputHints.currencyMaxFieldFn, // NOT required for templates - this is purely for demo display
-    demoModel: demoModel(models.canSpendMaxHalfOtherField) // NOT required for templates - this is purely for demo display
+    hint: currencyInputHints.currencyMaxFieldFn, // NOT required for validating models - this is purely for demo display
+    demoModel: demoModel(models.canSpendMaxHalfOtherField) // NOT required for validating models - this is purely for demo display
   })
 })
 
@@ -139,8 +139,8 @@ router.post('/currencyMaxHalfField', (req, res) => {
   if (errors.hasErrors) {
     res.render('errors/currencyInput/multiple-text-inputs', {
       errors, // we need to pass in the errors for use by the template
-      hint: currencyInputHints.currencyMaxFieldFn, // NOT required for templates - this is purely for demo display
-      demoModel: demoModel(models.canSpendMaxHalfOtherField) // NOT required for templates - this is purely for demo display
+      hint: currencyInputHints.currencyMaxFieldFn, // NOT required for validating models - this is purely for demo display
+      demoModel: demoModel(models.canSpendMaxHalfOtherField) // NOT required for validating models - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)

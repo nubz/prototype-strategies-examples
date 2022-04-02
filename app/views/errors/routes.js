@@ -6,4 +6,5 @@ router.get('/', function (req, res) {
 router.use('/textInputInlineModels', require('./textInputInlineModels/routes'))
 router.use('/textInput', require('./textInput/routes'))
 router.use('/currencyInput', require('./currencyInput/routes'))
+router.use('/dates', require('./dates/routes'))
 module.exports = router

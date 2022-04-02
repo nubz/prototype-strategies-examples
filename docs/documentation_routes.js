@@ -20,8 +20,8 @@ router.get('/install', function (req, res) {
 
 // Pages in install folder are markdown
 router.get('/install/:page', function (req, res) {
-  // If the link already has .md on the end (for GitHub docs)
-  // remove this when we render the page
+ // If the link already has .md on the end (for GitHub docs)
+ // remove this when we render the page
   if (req.params.page.slice(-3).toLowerCase() === '.md') {
     req.params.page = req.params.page.slice(0, -3)
   }
