@@ -55,7 +55,12 @@
     </form>
     {{ govukDetails({
       summaryText: "Page model for this validation",
-      html: demoModel | prettyObj
+      html: demoModel | prettyModel
+    }) }}
+
+    {{ govukDetails({
+      summaryText: "Filter to help with show which date inputs are in error",
+      html: dateErrorClasses | prettyFilter
     }) }}
   </div>
 </div>

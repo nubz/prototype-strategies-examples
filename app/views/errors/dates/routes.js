@@ -6,7 +6,7 @@ const { getPageErrors } = require('@nubz/gds-validation')
 // could be to describe the page models inline instead (see textInputInlineModels)
 const models = require('./models')
 // this import is for the demo only
-const { demoModel } = require('../../../demo/demoUtils')
+const { demoModel, dateErrorClasses } = require('../../../demo/demoUtils')
 
 // this router uses the same template throughout, with a variable hint message
 const templatePath = 'errors/dates/date-inputs'
@@ -19,7 +19,8 @@ router.get('/', (req, res) => {
 
 router.get('/required', (req, res) => {
   res.render(templatePath, {
-    demoModel: demoModel(models.dateBought) // this is NOT required for your templates - this is purely for demo display
+    demoModel: demoModel(models.dateBought), // this is NOT required for your templates - this is purely for demo display
+    dateErrorClasses: dateErrorClasses
   })
 })
 
@@ -34,7 +35,8 @@ router.post('/required', (req, res) => {
     // re-render same template with errors
     res.render(templatePath, {
       errors, // we need to pass in the errors for use by the template
-      demoModel: demoModel(models.dateBought) // NOT required for validating models - this is purely for demo display
+      demoModel: demoModel(models.dateBought), // this is NOT required for your templates - this is purely for demo display
+      dateErrorClasses: dateErrorClasses
     })
   } else {
     // success, page is valid
@@ -48,7 +50,8 @@ router.post('/beforeToday', (req, res) => {
     // re-render same template with errors
     res.render(templatePath, {
       errors, // we need to pass in the errors for use by the template
-      demoModel: demoModel(models.dateBeforeToday) // NOT required for validating models - this is purely for demo display
+      demoModel: demoModel(models.dateBeforeToday), // this is NOT required for your templates - this is purely for demo display
+      dateErrorClasses: dateErrorClasses // NOT required for validating models - this is purely for demo display
     })
   } else {
     // success, page is valid

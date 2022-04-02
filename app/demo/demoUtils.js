@@ -28,8 +28,16 @@ const demoModel = obj => {
   }, {})
 }
 
+const dateErrorClasses = (inputs, key) => {
+  if (key === 'year') {
+    return inputs && inputs.includes(key) ? 'govuk-input--width-4 govuk-input--error' : 'govuk-input--width-4'
+  }
+  return inputs && inputs.includes(key) ? 'govuk-input--width-2 govuk-input--error' : 'govuk-input--width-2'
+}
+
 module.exports = {
   textInputHints,
   currencyInputHints,
-  demoModel
+  demoModel,
+  dateErrorClasses
 }
