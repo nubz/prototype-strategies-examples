@@ -9,15 +9,8 @@ const models = require('./models')
 // this router uses the same template throughout, with a variable hint message
 const templatePath = 'errors/textInput/text-input'
 const homeRoute = './' // we treat returning to demo home as success, i.e. no errors found
-// convenient map of form hints (NOT error messages) to use in our single template, not related to error handling
-// if we didn't use this mechanism there probably would be no GET handlers required for those pages
-const hints = {
-  maxLength: 'Anything you enter above 10 characters long will produce an error',
-  minLength: 'Anything you enter below 4 characters long will produce an error',
-  exactLength: 'Entering anything other than 3 characters will produce an error',
-  betweenMinAndMax: 'Anything you enter below 4 or longer than 10 characters will produce an error',
-  regex: 'Entering anything other than letters, numbers, spaces or hyphens will produce an error'
-}
+// this import is for the demo only
+const { demoModel, textInputHints } = require('../../../demo/demoUtils')
 
 router.get('/', (req, res) => {
   req.session.destroy()
@@ -25,7 +18,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/required', (req, res) => {
-  res.render(templatePath, { pageModel: models.companyNameRequired })
+  res.render(templatePath, { demoModel: demoModel(models.companyNameRequired) })
 })
 
 router.post('/required', (req, res) => {
@@ -33,8 +26,8 @@ router.post('/required', (req, res) => {
   if (errors.hasErrors) {
     // re-render same template with errors
     res.render(templatePath, {
-      errors,
-      pageModel: models.companyNameRequired
+      errors, // we need to pass in the errors for use by the template
+      demoModel: demoModel(models.companyNameRequired) // NOT required for templates - this is purely for demo display
     })
   } else {
     // success, page is valid
@@ -44,8 +37,8 @@ router.post('/required', (req, res) => {
 
 router.get('/maxLength', (req, res) => {
   res.render(templatePath, {
-    hint: hints.maxLength,
-    pageModel: models.companyNameMaxLength
+    hint: textInputHints.maxLength, // NOT required for templates - this is purely for demo display
+    demoModel: models.companyNameMaxLength // NOT required for templates - this is purely for demo display
   })
 })
 
@@ -53,9 +46,9 @@ router.post('/maxLength', (req, res) => {
   const errors = getPageErrors(req.body, models.companyNameMaxLength)
   if (errors.hasErrors) {
     res.render(templatePath, {
-      errors: errors,
-      hint: hints.maxLength,
-      pageModel: models.companyNameMaxLength
+      errors: errors, // we need to pass in the errors for use by the template
+      hint: textInputHints.maxLength, // NOT required for templates - this is purely for demo display
+      demoModel: models.companyNameMaxLength // NOT required for templates - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)
@@ -64,8 +57,8 @@ router.post('/maxLength', (req, res) => {
 
 router.get('/minLength', (req, res) => {
   res.render(templatePath, {
-    hint: hints.minLength,
-    pageModel: models.companyNameMinLength
+    hint: textInputHints.minLength, // NOT required for templates - this is purely for demo display
+    demoModel: models.companyNameMinLength // NOT required for templates - this is purely for demo display
   })
 })
 
@@ -73,9 +66,9 @@ router.post('/minLength', (req, res) => {
   const errors = getPageErrors(req.body, models.companyNameMinLength)
   if (errors.hasErrors) {
     res.render(templatePath, {
-      errors,
-      hint: hints.minLength,
-      pageModel: models.companyNameMinLength
+      errors, // we need to pass in the errors for use by the template
+      hint: textInputHints.minLength, // NOT required for templates - this is purely for demo display
+      demoModel: models.companyNameMinLength // NOT required for templates - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)
@@ -84,8 +77,8 @@ router.post('/minLength', (req, res) => {
 
 router.get('/betweenMinAndMax', (req, res) => {
   res.render(templatePath, {
-    hint: hints.betweenMinAndMax,
-    pageModel: models.companyNameBetweenMinMax
+    hint: textInputHints.betweenMinAndMax, // NOT required for templates - this is purely for demo display
+    demoModel: models.companyNameBetweenMinMax // NOT required for templates - this is purely for demo display
   })
 })
 
@@ -93,9 +86,9 @@ router.post('/betweenMinAndMax', (req, res) => {
   const errors = getPageErrors(req.body, models.companyNameBetweenMinMax)
   if (errors.hasErrors) {
     res.render(templatePath, {
-      errors,
-      hint: hints.betweenMinAndMax,
-      pageModel: models.companyNameBetweenMinMax
+      errors, // we need to pass in the errors for use by the template
+      hint: textInputHints.betweenMinAndMax, // NOT required for templates - this is purely for demo display
+      demoModel: models.companyNameBetweenMinMax // NOT required for templates - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)
@@ -104,8 +97,8 @@ router.post('/betweenMinAndMax', (req, res) => {
 
 router.get('/exactLength', (req, res) => {
   res.render(templatePath, {
-    hint: hints.exactLength,
-    pageModel: models.companyNameExactLength
+    hint: textInputHints.exactLength, // NOT required for templates - this is purely for demo display
+    demoModel: models.companyNameExactLength // NOT required for templates - this is purely for demo display
   })
 })
 
@@ -113,9 +106,9 @@ router.post('/exactLength', (req, res) => {
   const errors = getPageErrors(req.body, models.companyNameExactLength)
   if (errors.hasErrors) {
     res.render(templatePath, {
-      errors,
-      hint: hints.exactLength,
-      pageModel: models.companyNameExactLength
+      errors, // we need to pass in the errors for use by the template
+      hint: textInputHints.exactLength, // NOT required for templates - this is purely for demo display
+      demoModel: models.companyNameExactLength // NOT required for templates - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)
@@ -124,8 +117,8 @@ router.post('/exactLength', (req, res) => {
 
 router.get('/regex', (req, res) => {
   res.render(templatePath, {
-    hint: hints.regex,
-    pageModel: models.companyNameRegex
+    hint: textInputHints.regex, // NOT required for templates - this is purely for demo display
+    demoModel: models.companyNameRegex // NOT required for templates - this is purely for demo display
   })
 })
 
@@ -133,9 +126,9 @@ router.post('/regex', (req, res) => {
   const errors = getPageErrors(req.body, models.companyNameRegex)
   if (errors.hasErrors) {
     res.render(templatePath, {
-      errors: errors,
-      hint: hints.regex,
-      pageModel: models.companyNameRegex
+      errors: errors, // we need to pass in the errors for use by the template
+      hint: textInputHints.regex, // NOT required for templates - this is purely for demo display
+      demoModel: demoModel(models.companyNameRegex) // NOT required for templates - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)

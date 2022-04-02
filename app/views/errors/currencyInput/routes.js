@@ -5,20 +5,12 @@ const { getPageErrors } = require('@nubz/gds-validation')
 // way for validating only some routes or a single route in our prototypes
 // could be to describe the page models inline instead (see textInputInlineModels)
 const models = require('./models')
+// this import is for the demo only
+const { demoModel, currencyInputHints } = require('../../../demo/demoUtils')
 
 // this router uses the same template throughout, with a variable hint message
 const templatePath = 'errors/currencyInput/text-input'
 const homeRoute = './' // we treat returning to demo home as success, i.e. no errors found
-// convenient map of form hints (NOT error messages) to use in our single template, not related to error handling
-// if we didn't use this mechanism there probably would be no GET handlers required for those pages
-const hints = {
-  currencyMax: 'Anything you enter above £500 produce an error',
-  currencyMin: 'Anything you enter below £10 will produce an error',
-  exactLength: 'Entering anything other than 3 characters will produce an error',
-  betweenMinAndMax: 'Anything you enter below £10 or above £100 will produce an error',
-  currencyMaxField: 'Entering anything above the amount you enter in the "How much do you have in the bank?" field will produce an error',
-  currencyMaxFieldFn: 'Entering anything above half the amount you enter in  "How much do you have in the bank?" field will produce an error'
-}
 
 router.get('/', (req, res) => {
   req.session.destroy()
@@ -27,7 +19,7 @@ router.get('/', (req, res) => {
 
 router.get('/required', (req, res) => {
   res.render(templatePath, {
-    pageModel: models.canSpend
+    demoModel: demoModel(models.canSpend) // this is NOT required for your templates - this is purely for demo display
   })
 })
 
@@ -40,7 +32,10 @@ router.post('/required', (req, res) => {
   const errors = getPageErrors(req.body, models.canSpend)
   if (errors.hasErrors) {
     // re-render same template with errors
-    res.render(templatePath, { errors, pageModel: models.canSpend })
+    res.render(templatePath, {
+      errors, // we need to pass in the errors for use by the template
+      demoModel: demoModel(models.canSpend) // NOT required for templates - this is purely for demo display
+    })
   } else {
     // success, page is valid
     res.redirect(homeRoute)
@@ -49,8 +44,8 @@ router.post('/required', (req, res) => {
 
 router.get('/currencyMax', (req, res) => {
   res.render(templatePath, {
-    hint: hints.currencyMax,
-    pageModel: models.canSpendMax
+    hint: currencyInputHints.currencyMax, // NOT required for templates - this is purely for demo display
+    demoModel: demoModel(models.canSpendMax) // NOT required for templates - this is purely for demo display
   })
 })
 
@@ -58,9 +53,9 @@ router.post('/currencyMax', (req, res) => {
   const errors = getPageErrors(req.body, models.canSpendMax)
   if (errors.hasErrors) {
     res.render(templatePath, {
-      errors: errors,
-      hint: hints.currencyMax,
-      pageModel: models.canSpendMax
+      errors: errors, // we need to pass in the errors for use by the template
+      hint: currencyInputHints.currencyMax, // NOT required for templates - this is purely for demo display
+      demoModel: demoModel(models.canSpendMax) // NOT required for templates - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)
@@ -69,8 +64,8 @@ router.post('/currencyMax', (req, res) => {
 
 router.get('/currencyMin', (req, res) => {
   res.render(templatePath, {
-    hint: hints.currencyMin,
-    pageModel: models.canSpendMin
+    hint: currencyInputHints.currencyMin, // NOT required for templates - this is purely for demo display
+    demoModel: demoModel(models.canSpendMin) // NOT required for templates - this is purely for demo display
   })
 })
 
@@ -78,9 +73,9 @@ router.post('/currencyMin', (req, res) => {
   const errors = getPageErrors(req.body, models.canSpendMin)
   if (errors.hasErrors) {
     res.render(templatePath, {
-      errors,
-      hint: hints.currencyMin,
-      pageModel: models.canSpendMin
+      errors, // we need to pass in the errors for use by the template
+      hint: currencyInputHints.currencyMin, // NOT required for templates - this is purely for demo display
+      demoModel: demoModel(models.canSpendMin) // NOT required for templates - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)
@@ -89,21 +84,18 @@ router.post('/currencyMin', (req, res) => {
 
 router.get('/betweenMinAndMax', (req, res) => {
   res.render(templatePath, {
-    hint: hints.betweenMinAndMax,
-    pageModel: models.canSpendBetweenMinMax
+    hint: currencyInputHints.betweenMinAndMax, // NOT required for templates - this is purely for demo display
+    demoModel: demoModel(models.canSpendBetweenMinMax) // NOT required for templates - this is purely for demo display
   })
 })
 
 router.post('/betweenMinAndMax', (req, res) => {
   const errors = getPageErrors(req.body, models.canSpendBetweenMinMax)
   if (errors.hasErrors) {
-    const demoPageModel = { ...models.canSpendBetweenMinMax }
-    delete demoPageModel.fields.spend.evalMaxValue
-    delete demoPageModel.fields.spend.evalMinValue
     res.render(templatePath, {
-      errors,
-      hint: hints.betweenMinAndMax,
-      pageModel: demoPageModel
+      errors, // we need to pass in the errors for use by the template
+      hint: currencyInputHints.betweenMinAndMax, // NOT required for templates - this is purely for demo display
+      demoModel: demoModel(models.canSpendBetweenMinMax) // NOT required for templates - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)
@@ -112,8 +104,8 @@ router.post('/betweenMinAndMax', (req, res) => {
 
 router.get('/currencyMaxField', (req, res) => {
   res.render('errors/currencyInput/multiple-text-inputs', {
-    hint: hints.currencyMaxField,
-    pageModel: models.canSpendMaxOtherField
+    hint: currencyInputHints.currencyMaxField, // NOT required for templates - this is purely for demo display
+    demoModel: demoModel(models.canSpendMaxOtherField) // NOT required for templates - this is purely for demo display
   })
 })
 
@@ -125,13 +117,10 @@ router.post('/currencyMaxField', (req, res) => {
   // will require access to the value of other named fields
   const errors = getPageErrors(req.body, models.canSpendMaxOtherField)
   if (errors.hasErrors) {
-    const demoPageModel = { ...models.canSpendMaxOtherField }
-    delete demoPageModel.fields.spend.evalMaxValue
-    delete demoPageModel.fields.spend.evalMinValue
     res.render('errors/currencyInput/multiple-text-inputs', {
-      errors,
-      hint: hints.currencyMaxField,
-      pageModel: demoPageModel
+      errors, // we need to pass in the errors for use by the template
+      hint: currencyInputHints.currencyMaxField, // NOT required for templates - this is purely for demo display
+      demoModel: demoModel(models.canSpendMaxOtherField) // NOT required for templates - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)
@@ -140,23 +129,18 @@ router.post('/currencyMaxField', (req, res) => {
 
 router.get('/currencyMaxHalfField', (req, res) => {
   res.render('errors/currencyInput/multiple-text-inputs', {
-    hint: hints.currencyMaxFieldFn,
-    pageModel: models.canSpendMaxHalfOtherField
+    hint: currencyInputHints.currencyMaxFieldFn, // NOT required for templates - this is purely for demo display
+    demoModel: demoModel(models.canSpendMaxHalfOtherField) // NOT required for templates - this is purely for demo display
   })
 })
 
 router.post('/currencyMaxHalfField', (req, res) => {
   const errors = getPageErrors(req.body, models.canSpendMaxHalfOtherField)
   if (errors.hasErrors) {
-    // here we are doing this for demo purposes only - we are removing
-    // the evaluated values automatically added to the model by the validation
-    const demoPageModel = { ...models.canSpendMaxHalfOtherField }
-    delete demoPageModel.fields.spend.evalMaxValue
-    delete demoPageModel.fields.spend.evalMinValue
     res.render('errors/currencyInput/multiple-text-inputs', {
-      errors,
-      hint: hints.currencyMaxFieldFn,
-      pageModel: demoPageModel
+      errors, // we need to pass in the errors for use by the template
+      hint: currencyInputHints.currencyMaxFieldFn, // NOT required for templates - this is purely for demo display
+      demoModel: demoModel(models.canSpendMaxHalfOtherField) // NOT required for templates - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)
