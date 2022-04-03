@@ -10,6 +10,7 @@ const { demoModel, dateErrorClasses } = require('../../../demo/demoUtils')
 
 // this router uses the same template throughout, with a variable hint message
 const templatePath = 'errors/dates/date-inputs'
+const multiplePath = 'errors/dates/multiple-date-inputs'
 const homeRoute = './' // we treat returning to demo home as success, i.e. no errors found
 
 router.get('/', (req, res) => {
@@ -190,6 +191,28 @@ router.post('/betweenMinAndMax', (req, res) => {
     res.render(templatePath, {
       errors, // we need to pass in the errors for use by the template
       demoModel: demoModel(models.betweenMinAndMax), // this is NOT required for your templates - this is purely for demo display
+      dateErrorClasses: dateErrorClasses // NOT required for validating models - this is purely for demo display
+    })
+  } else {
+    // success, page is valid
+    res.redirect(homeRoute)
+  }
+})
+
+router.get('/betweenMinAndMaxFields', (req, res) => {
+  res.render(multiplePath, {
+    demoModel: demoModel(models.betweenMinAndMaxFields), // this is NOT required for your templates - this is purely for demo display
+    dateErrorClasses: dateErrorClasses
+  })
+})
+
+router.post('/betweenMinAndMaxFields', (req, res) => {
+  const errors = getPageErrors(req.body, models.betweenMinAndMaxFields)
+  if (errors.hasErrors) {
+    // re-render same template with errors
+    res.render(multiplePath, {
+      errors, // we need to pass in the errors for use by the template
+      demoModel: demoModel(models.betweenMinAndMaxFields), // this is NOT required for your templates - this is purely for demo display
       dateErrorClasses: dateErrorClasses // NOT required for validating models - this is purely for demo display
     })
   } else {

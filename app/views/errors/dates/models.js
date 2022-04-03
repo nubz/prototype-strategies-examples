@@ -106,5 +106,30 @@ module.exports = {
         maxDescription: 'the last date the shed was on sale'
       }
     }
+  },
+  betweenMinAndMaxFields: {
+    fields: {
+      earliest: {
+        type: 'date',
+        name: 'the date the shed went on sale',
+        min: '2021-04-01',
+        minDescription: 'the date our shop opened'
+      },
+      latest: {
+        type: 'date',
+        name: 'the last date the shed was on sale',
+        min: 'earliest',
+        minDescription: 'the date you told us the shed went on sale',
+        beforeToday: true
+      },
+      bought: {
+        type: 'date',
+        name: 'the date you bought your shed',
+        min: 'earliest',
+        minDescription: 'the date you told us the shed went on sale',
+        max: 'latest',
+        maxDescription: 'the date you told us was the last date the shed was on sale'
+      }
+    }
   }
 }
