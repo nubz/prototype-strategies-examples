@@ -1,4 +1,4 @@
-// these models are all for the same field and would not normally use
+// these page models are all for the same field and would not normally use
 // the validation rules in their name - this is demo protocol only!
 
 module.exports = {
@@ -125,7 +125,7 @@ module.exports = {
       bought: {
         type: 'date',
         name: 'the date you bought your shed',
-        min: 'earliest',
+        min: 'earliest', // we name a field here so any value in there becomes our minimum
         minDescription: 'the date you told us the shed went on sale',
         max: 'latest',
         maxDescription: 'the date you told us was the last date the shed was on sale'
