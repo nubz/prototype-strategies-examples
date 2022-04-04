@@ -1,0 +1,78 @@
+{% extends "layout_unbranded.html" %}
+{% block pageTitle %}
+{% if errors %} Error: {% endif %}Currency input examples - Prototype strategies examples
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "./"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        {{ errorMacros.summary({errors: errors.summary}) }}
+        <h1 class="govuk-heading-xl">Bank account details</h1>
+        <form action="?" method="post">
+            {{ govukInput({
+                id: "account-name",
+                name: "account-name",
+                label: {
+                    text: "Account name",
+                    isPageHeading: false,
+                    classes: "govuk-label--m"
+                },
+                errorMessage: errors.inline['account-name'],
+                spellcheck: false,
+                value: data['account-name']
+            }) }}
+
+            {{ govukInput({
+                id: "sort-code",
+                name: "sort-code",
+                label: {
+                    text: "Sort code",
+                    isPageHeading: false,
+                    classes: "govuk-label--m"
+                },
+                hint: {
+                    text: 'This should be 6 numbers with or without spaces or hyphens'
+                },
+                errorMessage: errors.inline['sort-code'],
+                classes: "govuk-input--width-5",
+                spellcheck: false,
+                value: data['sort-code']
+            }) }}
+
+            {{ govukInput({
+                id: "account-number",
+                name: "account-number",
+                label: {
+                    text: "Account number",
+                    isPageHeading: false,
+                    classes: "govuk-label--m"
+                },
+                hint: {
+                    text: '8 numbers, for example 2345678'
+                },
+                errorMessage: errors.inline['account-number'],
+                classes: "govuk-input--width-10",
+                spellcheck: false,
+                value: data['account-number']
+            }) }}
+
+            <button class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+        </form>
+        {{ govukDetails({
+            summaryText: "Page model for this validation",
+            html: demoModel | prettyModel
+        }) }}
+    </div>
+</div>
+
+{% endblock %}

@@ -8,6 +8,7 @@ const models = require('./models')
 
 // this router uses the same template throughout, with a variable hint message
 const templatePath = 'errors/textInput/text-input'
+const multipleFieldsTemplatePath = 'errors/textInput/multiple-text-inputs'
 const homeRoute = './' // we treat returning to demo home as success, i.e. no errors found
 // this import is for the demo only
 const { demoModel, textInputHints } = require('../../../demo/demoUtils')
@@ -129,6 +130,24 @@ router.post('/regex', (req, res) => {
       errors: errors, // we need to pass in the errors for use by the template
       hint: textInputHints.regex, // NOT required for validating models - this is purely for demo display
       demoModel: demoModel(models.companyNameRegex) // NOT required for validating models - this is purely for demo display
+    })
+  } else {
+    res.redirect(homeRoute)
+  }
+})
+
+router.get('/bankDetails', (req, res) => {
+  res.render(multipleFieldsTemplatePath, {
+    demoModel: models.bankDetails // NOT required for validating models - this is purely for demo display
+  })
+})
+
+router.post('/bankDetails', (req, res) => {
+  const errors = getPageErrors(req.body, models.bankDetails)
+  if (errors.hasErrors) {
+    res.render(multipleFieldsTemplatePath, {
+      errors: errors, // we need to pass in the errors for use by the template
+      demoModel: demoModel(models.bankDetails) // NOT required for validating models - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)

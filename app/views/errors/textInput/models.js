@@ -58,5 +58,27 @@ module.exports = {
         }
       }
     }
+  },
+  bankDetails: {
+    fields: {
+      'account-name': {
+        type: 'nonEmptyString',
+        name: 'the name on your account',
+        maxLength: 35
+      },
+      'sort-code': {
+        type: 'nonEmptyString',
+        name: 'your sort code',
+        exactLength: 6,
+        inputType: 'digits',
+        transform: data => data['sort-code'].replace(/-/g, '').replace(/\s+/g, '')
+      },
+      'account-number': {
+        type: 'number',
+        name: 'your account number',
+        exactLength: 8,
+        inputType: 'digits'
+      }
+    }
   }
 }
