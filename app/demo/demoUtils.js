@@ -28,6 +28,8 @@ const demoModel = obj => {
   }, {})
 }
 
+// function is written here purely to replicate that used in filters.js
+// and allows the demo to print the function as an example
 const dateErrorClasses = (inputs, key) => {
   if (key === 'year') {
     return inputs && inputs.includes(key) ? 'govuk-input--width-4 govuk-input--error' : 'govuk-input--width-4'

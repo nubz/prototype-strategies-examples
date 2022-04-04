@@ -18,69 +18,69 @@
     <h1 class="govuk-heading-l">Tell us all the dates</h1>
     <form action="?" method="post">
       {{ govukDateInput({
-      id: "earliest",
-      namePrefix: "earliest",
-      fieldset: {
-      legend: {
-      text: "When did the shed go on sale?",
-      isPageHeading: false,
-      classes: "govuk-fieldset__legend--m"
-      }
-      },
-      hint: {
-      text: "For example, 27 3 2017"
-      },
-      errorMessage: errors.njk.earliest,
-      items: [
-      {
-      classes: errors.inline.earliest.inputs | dateErrorClasses('day'),
-      name: "day",
-      value: data['earliest-day']
-      },
-      {
-      classes: errors.inline.earliest.inputs | dateErrorClasses('month'),
-      name: "month",
-      value: data['earliest-month']
-      },
-      {
-      classes: errors.inline.earliest.inputs | dateErrorClasses('year'),
-      name: "year",
-      value: data['earliest-year']
-      }
-      ]
+        id: "earliest",
+        namePrefix: "earliest",
+        fieldset: {
+        legend: {
+          text: "When did the shed go on sale?",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--m"
+        }
+        },
+        hint: {
+          text: "For example, 27 3 2017"
+        },
+        errorMessage: errors.njk.earliest,
+        items: [
+          {
+            classes: errors.inline.earliest.inputs | dateErrorClasses('day'),
+            name: "day",
+            value: data['earliest-day']
+          },
+          {
+            classes: errors.inline.earliest.inputs | dateErrorClasses('month'),
+            name: "month",
+            value: data['earliest-month']
+          },
+          {
+            classes: errors.inline.earliest.inputs | dateErrorClasses('year'),
+            name: "year",
+            value: data['earliest-year']
+          }
+        ]
       }) }}
 
       {{ govukDateInput({
-      id: "latest",
-      namePrefix: "latest",
-      fieldset: {
-      legend: {
-      text: "When did the shed stop being on sale?",
-      isPageHeading: false,
-      classes: "govuk-fieldset__legend--m"
-      }
-      },
-      hint: {
-      text: "For example, 27 3 2017"
-      },
-      errorMessage: errors.njk.latest,
-      items: [
-      {
-      classes: errors.inline.latest.inputs | dateErrorClasses('day'),
-      name: "day",
-      value: data['latest-day']
-      },
-      {
-      classes: errors.inline.latest.inputs | dateErrorClasses('month'),
-      name: "month",
-      value: data['latest-month']
-      },
-      {
-      classes: errors.inline.latest.inputs | dateErrorClasses('year'),
-      name: "year",
-      value: data['latest-year']
-      }
-      ]
+        id: "latest",
+        namePrefix: "latest",
+        fieldset: {
+        legend: {
+          text: "When did the shed stop being on sale?",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--m"
+        }
+        },
+        hint: {
+          text: "For example, 27 3 2017"
+        },
+        errorMessage: errors.njk.latest,
+        items: [
+          {
+            classes: errors.inline.latest.inputs | dateErrorClasses('day'),
+            name: "day",
+            value: data['latest-day']
+          },
+          {
+            classes: errors.inline.latest.inputs | dateErrorClasses('month'),
+            name: "month",
+            value: data['latest-month']
+          },
+          {
+            classes: errors.inline.latest.inputs | dateErrorClasses('year'),
+            name: "year",
+            value: data['latest-year']
+          }
+        ]
       }) }}
 
 

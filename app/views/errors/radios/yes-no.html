@@ -1,0 +1,56 @@
+{% extends "layout_unbranded.html" %}
+{% block pageTitle %}
+{% if errors %} Error: {% endif %}Date examples - Prototype strategies examples
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "./"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ errorMacros.summary({errors: errors.summary}) }}
+    <form action="?" method="post">
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        idPrefix: "own-a-shed",
+        name: "own-a-shed",
+        fieldset: {
+        legend: {
+          text: "Do you own a shed?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+        },
+        hint: {
+          text: "This can include summer houses and garden offices."
+        },
+        items: [
+          {
+            value: "Yes",
+            text: "Yes"
+          },
+          {
+            value: "No",
+            text: "No"
+          }
+        ]
+      }) }}
+
+      <button class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+    {{ govukDetails({
+      summaryText: "Page model for this validation",
+      html: demoModel | prettyModel
+    }) }}
+  </div>
+</div>
+
+{% endblock %}

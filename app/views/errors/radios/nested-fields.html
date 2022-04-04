@@ -1,0 +1,91 @@
+{% extends "layout_unbranded.html" %}
+{% block pageTitle %}
+{% if errors %} Error: {% endif %}Date examples - Prototype strategies examples
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "./"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ errorMacros.summary({errors: errors.summary}) }}
+    <form action="?" method="post">
+      {% set emailHtml %}
+        {{ govukInput({
+          id: "email",
+          name: "email",
+          type: "email",
+          autocomplete: "email",
+          spellcheck: false,
+          label: {
+            text: "Email address"
+          },
+          errorMessage: errors.inline.email
+        }) }}
+      {% endset -%}
+
+      {% set phoneHtml %}
+        {{ govukInput({
+            id: "telephone",
+            name: "telephone",
+            type: "tel",
+            autocomplete: "tel",
+            classes: "govuk-!-width-one-third",
+            label: {
+              text: "Phone number"
+            },
+            errorMessage: errors.inline.telephone
+          }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          idPrefix: "contact-preference",
+          name: "contact-preference",
+          fieldset: {
+            legend: {
+              text: "How would you prefer to be contacted?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select one option."
+          },
+          items: [
+          {
+            value: "Email",
+            text: "Email",
+            conditional: {
+              html: emailHtml
+            },
+            checked: data['contact-preference'] === 'Email'
+          },
+          {
+            value: "Telephone",
+            text: "Telephone",
+            conditional: {
+              html: phoneHtml
+            },
+            checked: data['contact-preference'] === 'Telephone'
+          }
+        ]
+      }) }}
+
+      <button class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+    {{ govukDetails({
+      summaryText: "Page model for this validation",
+      html: demoModel | prettyModel
+    }) }}
+  </div>
+</div>
+
+{% endblock %}
