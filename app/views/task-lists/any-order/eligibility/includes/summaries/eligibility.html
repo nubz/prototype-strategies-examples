@@ -1,0 +1,33 @@
+<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Do you have a shed?
+      </dt>
+      <dd class="govuk-summary-list__value">
+        {{ data['has-shed'] }}
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a href="{{schema.eligiblity.path}}do-you-have-a-shed">
+          Change
+          <span class="govuk-visually-hidden"> if you have a shed</span>
+        </a>
+
+      </dd>
+    </div>
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      How tall is your shed?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['enter-shed-height'] }} cm
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a href="{{schema.checks.path}}multiple-disposals">
+        Change
+        <span class="govuk-visually-hidden"> more than one disposal</span>
+      </a>
+    </dd>
+  </div>
+
+</dl>

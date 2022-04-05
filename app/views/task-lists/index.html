@@ -1,0 +1,50 @@
+
+{% extends "layout_unbranded.html" %}
+
+{% block pageTitle %}
+  Task lists - Prototype strategies examples
+{% endblock %}
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "../"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+      {% if folder %}
+        {% include "./" + folder + "/index.html" %}
+      {% else %}
+        <h1 class="govuk-heading-xl">
+          Task list examples
+        </h1>
+        <p class="govuk-body">
+          These examples all make use of the
+          <a href="https://www.npmjs.com/package/@nubz/gds-task-list-ops" rel="noreferrer noopener" target="_blank">@nubz/gds-task-list-ops</a>
+          package available via NPM which provides methods for:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>assessing the status of tasks</li>
+          <li>providing links into tasks</li>
+        </ul>
+
+        <p>
+          The template, routing and model code for all examples can be
+          <a href="https://github.com/nubz/prototype-strategies-examples/blob/main/app/views/task-lists/" rel="noreferrer noopener" target="_blank">seen on Github</a>.
+        </p>
+      {% endif %}
+
+    </div>
+    <div class="govuk-grid-column-one-quarter">
+      <h2 class="govuk-heading-s app-related-items">Task list examples</h2>
+      <ul class="govuk-list">
+        <li><a href="/task-lists/any-order/task-list" class="govuk-link">No enforced sequencing</a></li>
+        <li><a href="/task-lists/sequenced/task-list" class="govuk-link">Enforced sequencing</a></li>
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}

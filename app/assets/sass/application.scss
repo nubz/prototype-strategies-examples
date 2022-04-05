@@ -40,3 +40,25 @@ body > header {
     overflow-x: auto;
   }
 }
+
+.to-do {
+  color: #383f43;
+  background: #eeefef;
+  border:none;
+}
+
+.in-progress {
+  color: #144e81;
+  background: #d2e2f1;
+  border:none;
+}
+
+.cannot-start {
+  color: #383f43;
+  background: #eeefef;
+  border:none;
+}
+
+.completed {
+  background-color: #1d70b8;
+}

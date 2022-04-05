@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@nubz/gds-validation": "^2.4.0",
+    "@nubz/gds-task-list-ops": "^0.3.0",
     "acorn": "^8.5.0",
     "ansi-colors": "^4.1.1",
     "basic-auth": "^2.0.0",

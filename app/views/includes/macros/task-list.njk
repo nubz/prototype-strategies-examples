@@ -1,0 +1,29 @@
+{% macro status(status="to-do") %}
+  <strong class="govuk-tag app-task-list__task-completed {{status}}">
+      {% if status === 'to-do' %}
+        Not started
+      {% elif status === 'in-progress' %}
+        In progress
+      {% elif status === 'completed' %}
+        Completed
+      {% elif status === 'cannot-start' %}
+        Cannot start
+      {% endif %}
+  </strong>
+{% endmacro %}
+
+{% macro taskLink(data = {status: 'to-do', link: '', title: ''}) %}
+  {% if data.status == 'cannot-start' %}
+     {{ data.title }}
+  {% else %}
+      <a class="app-task-list__task-name" data-status="{{ data.status }}" href="{{ data.link }}">
+        {{ data.title }}
+      </a>
+  {% endif %}
+{% endmacro %}
+
+{% macro returnToSummary() %}
+    <p class="govuk-body">
+      <a href="../task-list" class="govuk-link">Return to task list</a>
+    </p>
+{% endmacro %}

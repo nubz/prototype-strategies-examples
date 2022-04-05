@@ -5,4 +5,5 @@ router.get('/', function (req, res) {
   res.render('index')
 })
 router.use('/errors', require('./views/errors/routes'))
+router.use('/task-lists', require('./views/task-lists/routes'))
 module.exports = router

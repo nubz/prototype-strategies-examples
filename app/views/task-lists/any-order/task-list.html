@@ -1,0 +1,51 @@
+{% extends "layout_unbranded.html" %}
+
+{% set title %}
+Any order task list
+{% endset -%}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      Any order task list
+    </h1>
+
+    <ol class="app-task-list">
+      <li>
+        <h2 class="app-task-list__section">
+          <span class="app-task-list__section-number">
+            1.
+          </span>
+          Before you start
+        </h2>
+
+        <ul class="app-task-list__items">
+          <li class="app-task-list__item">
+            {{ taskListMacros.taskLink(taskStatus.eligibility) }}
+            {{ taskListMacros.status(taskStatus.eligibility.status) }}
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <h2 class="app-task-list__section">
+          <span class="app-task-list__section-number">
+            2.
+          </span>
+          Provide details
+        </h2>
+        <ul class="app-task-list__items">
+          <li class="app-task-list__item">
+            {{ taskListMacros.taskLink(taskStatus.yourDetails) }}
+            {{ taskListMacros.status(taskStatus.yourDetails.status) }}
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+</div>
+
+{% endblock %}
