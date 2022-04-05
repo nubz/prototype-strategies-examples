@@ -1,7 +1,7 @@
 module.exports = {
   eligibility: {
     path: '/task-lists/any-order/eligibility/',
-    summaryPath: './includes/summaries/eligibility.html',
+    summaryPath: './includes/summaries/yourDetails.html',
     title: 'Eligibility',
     pages: {
       'do-you-have-a-shed': {
@@ -25,7 +25,7 @@ module.exports = {
     }
   },
   yourDetails: {
-    path: '/',
+    path: '/task-lists/any-order/yourDetails/',
     summaryPath: './includes/summaries/yourDetails.html',
     title: 'Your details',
     pages: {

@@ -1,105 +1,60 @@
-{% extends data.version + "/layout.html" %}
-
-{% set mainClasses = "govuk-main-wrapper--l calc-task-list" %}
+{% extends "layout_unbranded.html" %}
 
 {% set title %}
-Return task list
+Any order task list
 {% endset -%}
 
-{% block pageTitle %}
-{{ title | documentTitle(hasErrors) }}
-{% endblock %}
-
 {% block beforeContent %}
-{{ menu.accountMenu({active: 'home', prefix: '../account/', data: data}) }}
+{{ govukBackLink({
+text: "Back",
+href: "../"
+}) }}
 {% endblock %}
 
 {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <span class="govuk-caption-xl"> 
-      {% if data.authRecord.affinityGroup == 'agent' %}
-        Client: {{ data['first-name'] }} {{ data['last-name'] }}
-      {% elif data.authRecord.affinityGroup == 'organisation' %}
-        {{ data | accountName }}
-      {% else %}
-        {{ data['first-name'] }} {{ data['last-name'] }}
-      {% endif %}
-    </span>
     <h1 class="govuk-heading-xl">
-      Report and pay Capital Gains Tax on UK property
+      Any order task list
     </h1>
 
-    <ol class="app-task-list{% if data.hmrcTaskList === 'true' %} hmrcTaskList{% endif %}">
+    <p class="govuk-body">
+      You can complete these tasks in any order.
+    </p>
+
+    <ol class="app-task-list">
       <li>
         <h2 class="app-task-list__section">
-            <span class="app-task-list__section-number">
-              1.
-            </span>
+          <span class="app-task-list__section-number">
+            1.
+          </span>
           Before you start
         </h2>
 
         <ul class="app-task-list__items">
           <li class="app-task-list__item">
-            {{ taskListMacros.taskLink(taskStatus.personRepresented) }}
-            {{ taskListMacros.status(taskStatus.personRepresented.status | taskListStatus(data.hmrcTaskList)) }}
+            {{ taskListMacros.taskLink(taskStatus.eligibility) }}
+            {{ taskListMacros.status(taskStatus.eligibility.status) }}
           </li>
         </ul>
       </li>
 
       <li>
         <h2 class="app-task-list__section">
-              <span class="app-task-list__section-number">
-                2.
-              </span>
+          <span class="app-task-list__section-number">
+            2.
+          </span>
           Provide details
         </h2>
         <ul class="app-task-list__items">
           <li class="app-task-list__item">
-            {{ taskListMacros.taskLink(taskStatus.propertyDetails) }}
-            {{ taskListMacros.status(taskStatus.propertyDetails.status | taskListStatus(data.hmrcTaskList)) }}
-          </li>
-          <li class="app-task-list__item">
-            {{ taskListMacros.taskLink(taskStatus.propertyDisposing) }}
-            {{ taskListMacros.status(taskStatus.propertyDisposing.status | taskListStatus(data.hmrcTaskList)) }}
-          </li>
-          <li class="app-task-list__item">
-            {{ taskListMacros.taskLink(taskStatus.propertyGetting) }}
-            {{ taskListMacros.status(taskStatus.propertyGetting.status | taskListStatus(data.hmrcTaskList)) }}
-          </li>
-        </ul>
-      </li>
-
-      <li>
-        <h2 class="app-task-list__section">
-              <span class="app-task-list__section-number">
-                3.
-              </span>
-          Report and pay the tax
-        </h2>
-        <ul class="app-task-list__items">
-          <li class="app-task-list__item ">
-            {{ taskListMacros.taskLink(taskStatus.losses) }}
-            {{ taskListMacros.status(taskStatus.losses.status | taskListStatus(data.hmrcTaskList)) }}
-          </li>
-          <li class="app-task-list__item">
-            {{ taskListMacros.taskLink(taskStatus.yourCalculations) }}
-            {{ taskListMacros.status(taskStatus.yourCalculations.status | taskListStatus(data.hmrcTaskList)) }}
-          </li>
-          <li class="app-task-list__item">
-            {{ taskListMacros.taskLink(taskStatus.supportingEvidence) }}
-            {{ taskListMacros.status(taskStatus.supportingEvidence.status | taskListStatus(data.hmrcTaskList)) }}
-          </li>
-          <li class="app-task-list__item">
-            {{ taskListMacros.taskLink(taskStatus.cya) }}
-            {{ taskListMacros.status(taskStatus.cya.status | taskListStatus(data.hmrcTaskList)) }}
+            {{ taskListMacros.taskLink(taskStatus.yourDetails) }}
+            {{ taskListMacros.status(taskStatus.yourDetails.status) }}
           </li>
         </ul>
       </li>
     </ol>
-
-    {% endif %}
   </div>
 
 </div>

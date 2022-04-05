@@ -20,5 +20,6 @@ router.get('/task-list', (req, res) => {
 })
 
 router.use('/eligibility', require('./eligibility/routes'))
+router.use('/yourDetails', require('./yourDetails/routes'))
 
 module.exports = router
