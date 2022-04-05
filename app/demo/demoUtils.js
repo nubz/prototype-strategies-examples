@@ -15,6 +15,11 @@ const currencyInputHints = {
   currencyMaxFieldFn: 'Entering anything above half the amount you enter in  "How much do you have in the bank?" field will produce an error'
 }
 
+const matchingHints = {
+  matches: 'If you enter anything other than "123456" or "ABCDEF" you will see an error',
+  exclusions: 'If you enter "123456" or "ABCDEF" you will see an error'
+}
+
 // because our validation script injects evaluated values for min amd max into our models we don't
 // want to confuse developers by showing these values in the demo display of the models
 const demoModel = obj => {
@@ -40,6 +45,7 @@ const dateErrorClasses = (inputs, key) => {
 module.exports = {
   textInputHints,
   currencyInputHints,
+  matchingHints,
   demoModel,
   dateErrorClasses
 }

@@ -8,4 +8,5 @@ router.use('/textInput', require('./textInput/routes'))
 router.use('/currencyInput', require('./currencyInput/routes'))
 router.use('/dates', require('./dates/routes'))
 router.use('/radios', require('./radios/routes'))
+router.use('/matches', require('./matches/routes'))
 module.exports = router
