@@ -39,7 +39,7 @@ router.post('/required', (req, res) => {
 router.get('/maxLength', (req, res) => {
   res.render(templatePath, {
     hint: textInputHints.maxLength, // NOT required for validating models - this is purely for demo display
-    demoModel: models.companyNameMaxLength // NOT required for validating models - this is purely for demo display
+    demoModel: demoModel(models.companyNameMaxLength) // NOT required for validating models - this is purely for demo display
   })
 })
 
@@ -49,7 +49,7 @@ router.post('/maxLength', (req, res) => {
     res.render(templatePath, {
       errors: errors, // we need to pass in the errors for use by the template
       hint: textInputHints.maxLength, // NOT required for validating models - this is purely for demo display
-      demoModel: models.companyNameMaxLength // NOT required for validating models - this is purely for demo display
+      demoModel: demoModel(models.companyNameMaxLength) // NOT required for validating models - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)
@@ -59,7 +59,7 @@ router.post('/maxLength', (req, res) => {
 router.get('/minLength', (req, res) => {
   res.render(templatePath, {
     hint: textInputHints.minLength, // NOT required for validating models - this is purely for demo display
-    demoModel: models.companyNameMinLength // NOT required for validating models - this is purely for demo display
+    demoModel: demoModel(models.companyNameMinLength) // NOT required for validating models - this is purely for demo display
   })
 })
 
@@ -69,7 +69,7 @@ router.post('/minLength', (req, res) => {
     res.render(templatePath, {
       errors, // we need to pass in the errors for use by the template
       hint: textInputHints.minLength, // NOT required for validating models - this is purely for demo display
-      demoModel: models.companyNameMinLength // NOT required for validating models - this is purely for demo display
+      demoModel: demoModel(models.companyNameMinLength) // NOT required for validating models - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)
@@ -79,7 +79,7 @@ router.post('/minLength', (req, res) => {
 router.get('/betweenMinAndMax', (req, res) => {
   res.render(templatePath, {
     hint: textInputHints.betweenMinAndMax, // NOT required for validating models - this is purely for demo display
-    demoModel: models.companyNameBetweenMinMax // NOT required for validating models - this is purely for demo display
+    demoModel: demoModel(models.companyNameBetweenMinMax) // NOT required for validating models - this is purely for demo display
   })
 })
 
@@ -89,7 +89,7 @@ router.post('/betweenMinAndMax', (req, res) => {
     res.render(templatePath, {
       errors, // we need to pass in the errors for use by the template
       hint: textInputHints.betweenMinAndMax, // NOT required for validating models - this is purely for demo display
-      demoModel: models.companyNameBetweenMinMax // NOT required for validating models - this is purely for demo display
+      demoModel: demoModel(models.companyNameBetweenMinMax) // NOT required for validating models - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)
@@ -99,7 +99,7 @@ router.post('/betweenMinAndMax', (req, res) => {
 router.get('/exactLength', (req, res) => {
   res.render(templatePath, {
     hint: textInputHints.exactLength, // NOT required for validating models - this is purely for demo display
-    demoModel: models.companyNameExactLength // NOT required for validating models - this is purely for demo display
+    demoModel: demoModel(models.companyNameExactLength) // NOT required for validating models - this is purely for demo display
   })
 })
 
@@ -109,7 +109,7 @@ router.post('/exactLength', (req, res) => {
     res.render(templatePath, {
       errors, // we need to pass in the errors for use by the template
       hint: textInputHints.exactLength, // NOT required for validating models - this is purely for demo display
-      demoModel: models.companyNameExactLength // NOT required for validating models - this is purely for demo display
+      demoModel: demoModel(models.companyNameExactLength) // NOT required for validating models - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)
@@ -119,7 +119,7 @@ router.post('/exactLength', (req, res) => {
 router.get('/regex', (req, res) => {
   res.render(templatePath, {
     hint: textInputHints.regex, // NOT required for validating models - this is purely for demo display
-    demoModel: models.companyNameRegex // NOT required for validating models - this is purely for demo display
+    demoModel: demoModel(models.companyNameRegex) // NOT required for validating models - this is purely for demo display
   })
 })
 
@@ -138,7 +138,7 @@ router.post('/regex', (req, res) => {
 
 router.get('/bankDetails', (req, res) => {
   res.render(multipleFieldsTemplatePath, {
-    demoModel: models.bankDetails // NOT required for validating models - this is purely for demo display
+    demoModel: demoModel(models.bankDetails) // NOT required for validating models - this is purely for demo display
   })
 })
 

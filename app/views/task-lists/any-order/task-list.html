@@ -61,8 +61,13 @@ href: "../"
       </p>
       <a href="../" class="govuk-button" role="button" data-module="govuk-button">Continue</a>
     {% endif %}
-  </div>
 
+    {{ govukDetails({
+      summaryText: "Schema for this task list",
+      html: demoModel | prettySchema
+    }) }}
+
+  </div>
 </div>
 
 {% endblock %}

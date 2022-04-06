@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
 
 router.get('/required', (req, res) => {
   res.render(templatePath, {
-    demoModel: demoModel(models.ownAShed), // this is NOT required for your templates - this is purely for demo display
+    demoModel: demoModel(models.ownAShed) // this is NOT required for your templates - this is purely for demo display
   })
 })
 

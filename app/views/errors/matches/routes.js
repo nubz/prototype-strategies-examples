@@ -39,7 +39,7 @@ router.post('/matches', (req, res) => {
 router.get('/exclusions', (req, res) => {
   res.render(templatePath, {
     hint: matchingHints.exclusions, // NOT required for validating models - this is purely for demo display
-    demoModel: models.idRefExclusions // NOT required for validating models - this is purely for demo display
+    demoModel: demoModel(models.idRefExclusions) // NOT required for validating models - this is purely for demo display
   })
 })
 
@@ -49,7 +49,7 @@ router.post('/exclusions', (req, res) => {
     res.render(templatePath, {
       errors: errors, // we need to pass in the errors for use by the template
       hint: matchingHints.exclusions, // NOT required for validating models - this is purely for demo display
-      demoModel: models.idRefExclusions // NOT required for validating models - this is purely for demo display
+      demoModel: demoModel(models.idRefExclusions) // NOT required for validating models - this is purely for demo display
     })
   } else {
     res.redirect(homeRoute)

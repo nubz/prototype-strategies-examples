@@ -16,10 +16,14 @@ router.get('/start-again', (req, res) => {
 })
 
 router.get('/task-list', (req, res) => {
-  const taskStatus = taskList.returnTaskStatus(req.session.data, schema)
-  console.log('taskStatus = ', taskStatus)
-  const taskListComplete = taskList.taskListComplete(req.session.data, schema)
-  res.render(templatePath, { taskStatus, taskListComplete })
+  const data = req.session.data
+  if (data.ineligible) {
+    res.redirect('eligibility/ineligible')
+  } else {
+    const taskStatus = taskList.returnTaskStatus(data, schema)
+    const taskListComplete = taskList.taskListComplete(data, schema)
+    res.render(templatePath, { taskStatus, taskListComplete, demoModel: schema })
+  }
 })
 
 router.use('/eligibility', require('./eligibility/routes'))

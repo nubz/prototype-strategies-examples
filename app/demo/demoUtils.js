@@ -24,13 +24,17 @@ const matchingHints = {
 // want to confuse developers by showing these values in the demo display of the models
 const demoModel = obj => {
   const stripped = { ...obj }
-  return Object.keys(stripped.fields).reduce((list, next) => {
-    delete stripped.fields[next].evalMaxValue
-    delete stripped.fields[next].evalMinValue
-    delete stripped.fields[next].evalAfterDateValue
-    delete stripped.fields[next].evalBeforeDateValue
-    return stripped.fields
-  }, {})
+  if (stripped.hasOwnProperty('fields')) {
+    return Object.keys(stripped.fields).reduce((list, next) => {
+      delete stripped.fields[next].evalMaxValue
+      delete stripped.fields[next].evalMinValue
+      delete stripped.fields[next].evalAfterDateValue
+      delete stripped.fields[next].evalBeforeDateValue
+      return stripped
+    }, {})
+  } else {
+    return obj
+  }
 }
 
 // function is written here purely to replicate that used in filters.js
