@@ -39,6 +39,7 @@ router.post('/enter-shed-height', (req, res) => {
 })
 
 router.post('/check-your-answers', (req, res) => {
+  delete req.session.data.ineligible
   res.redirect('../task-list')
 })
 
