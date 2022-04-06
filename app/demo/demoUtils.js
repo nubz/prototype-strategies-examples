@@ -24,6 +24,7 @@ const matchingHints = {
 // want to confuse developers by showing these values in the demo display of the models
 const demoModel = obj => {
   const stripped = { ...obj }
+  // eslint-disable-next-line no-prototype-builtins
   if (stripped.hasOwnProperty('fields')) {
     return Object.keys(stripped.fields).reduce((list, next) => {
       delete stripped.fields[next].evalMaxValue

@@ -23,7 +23,12 @@ router.get('/task-list', (req, res) => {
   } else {
     const taskStatus = taskList.returnTaskStatus(data, schema)
     const taskListComplete = taskList.taskListComplete(data, schema)
-    res.render(templatePath, { taskStatus, taskListComplete, demoModel: demoModel(schema) })
+    res.render(templatePath, {
+      taskStatus,
+      taskListComplete,
+      demoModel: demoModel(schema),
+      demoTaskStatus: demoModel(taskStatus)
+    })
   }
 })
 

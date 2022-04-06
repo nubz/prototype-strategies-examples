@@ -2,6 +2,7 @@ const router = require('express').Router()
 const taskList = require('@nubz/gds-task-list-ops')
 // this is the schema our task list is defined by
 const { schema } = require('./models')
+const { demoModel } = require('../../../demo/demoUtils')
 
 const templatePath = 'task-lists/sequenced/task-list'
 
@@ -22,7 +23,12 @@ router.get('/task-list', (req, res) => {
   } else {
     const taskStatus = taskList.returnTaskStatus(data, schema)
     const taskListComplete = taskList.taskListComplete(data, schema)
-    res.render(templatePath, { taskStatus, taskListComplete, demoModel: schema })
+    res.render(templatePath, {
+      taskStatus,
+      taskListComplete,
+      demoModel: schema,
+      demoTaskStatus: demoModel(taskStatus)
+    })
   }
 })
 
