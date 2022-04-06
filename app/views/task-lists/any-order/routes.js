@@ -1,10 +1,7 @@
 const router = require('express').Router()
 const taskList = require('@nubz/gds-task-list-ops')
-// here we import a models file to simplify the router code, models files can
-// also become schemas for task list or whole site validations, a more ad-hoc
-// way for validating only some routes or a single route in our prototypes
-// could be to describe the page models inline instead (see textInputInlineModels)
-const models = require('./models')
+// this is the schema our task list is defined by
+const schema = require('./models')
 
 const templatePath = 'task-lists/any-order/task-list'
 
@@ -22,8 +19,8 @@ router.get('/task-list', (req, res) => {
   if (req.session.data.ineligible) {
     res.redirect('eligibility/ineligible')
   } else {
-    const taskStatus = taskList.returnTaskStatus(req.session.data, models)
-    const taskListComplete = taskList.taskListComplete(req.session.data, models)
+    const taskStatus = taskList.returnTaskStatus(req.session.data, schema)
+    const taskListComplete = taskList.taskListComplete(req.session.data, schema)
     res.render(templatePath, { taskStatus, taskListComplete })
   }
 })
