@@ -2,7 +2,7 @@ const { STATUS, taskStatus } = require('@nubz/gds-task-list-ops')
 const schema = {
   eligibility: {
     path: '/task-lists/sequenced/eligibility/',
-    summaryPath: './includes/summaries/eligibility.html',
+    summaryPath: './includes/summaries/about-shed.html',
     title: 'Eligibility',
     pages: {
       'do-you-have-a-shed': {
@@ -53,6 +53,40 @@ const schema = {
               return `${year}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day}`
             },
             maxDescription: 'you must be older than 16'
+          }
+        }
+      }
+    }
+  },
+  aboutShed: {
+    includeIf: data => taskStatus(data, schema.yourDetails) === STATUS.COMPLETE,
+    path: '/task-lists/sequenced/about-shed/',
+    summaryPath: './includes/summaries/about-shed.html',
+    title: 'About your shed',
+    pages: {
+      'is-shed-outdoors': {
+        fields: {
+          'shed-outdoors': {
+            type: 'enum',
+            name: 'yes if your shed is outdoors',
+            validValues: ['Yes', 'No']
+          }
+        }
+      },
+      'is-shed-built': {
+        fields: {
+          'shed-built': {
+            type: 'enum',
+            name: 'yes if your shed is built',
+            validValues: ['Yes', 'No']
+          }
+        }
+      },
+      'how-many-windows': {
+        fields: {
+          'how-many-windows': {
+            type: 'number',
+            name: 'the amount of windows'
           }
         }
       }

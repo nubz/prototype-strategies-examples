@@ -34,5 +34,6 @@ router.get('/task-list', (req, res) => {
 
 router.use('/eligibility', require('./eligibility/routes'))
 router.use('/yourDetails', require('./yourDetails/routes'))
+router.use('/about-shed', require('./about-shed/routes'))
 
 module.exports = router

@@ -20,7 +20,7 @@ href: "../"
     </h1>
 
     <p class="govuk-body">
-      You cannot start the second task until the first one is complete.
+      The tasks marked as cannot start will become available to start when you have completed the preceding task
     </p>
 
     <ol class="app-task-list">
@@ -37,6 +37,10 @@ href: "../"
             {{ taskListMacros.taskLink(taskStatus.eligibility) }}
             {{ taskListMacros.status(taskStatus.eligibility.status) }}
           </li>
+          <li class="app-task-list__item">
+            {{ taskListMacros.taskLink(taskStatus.yourDetails) }}
+            {{ taskListMacros.status(taskStatus.yourDetails.status) }}
+          </li>
         </ul>
       </li>
 
@@ -45,12 +49,12 @@ href: "../"
           <span class="app-task-list__section-number">
             2.
           </span>
-          Provide details
+          About your shed
         </h2>
         <ul class="app-task-list__items">
           <li class="app-task-list__item">
-            {{ taskListMacros.taskLink(taskStatus.yourDetails) }}
-            {{ taskListMacros.status(taskStatus.yourDetails.status) }}
+            {{ taskListMacros.taskLink(taskStatus.aboutShed) }}
+            {{ taskListMacros.status(taskStatus.aboutShed.status) }}
           </li>
         </ul>
       </li>
