@@ -14,8 +14,10 @@ router.get('/', (req, res) => {
 })
 
 router.get('/task-list', (req, res) => {
+  if (req.session.data.ineligible) {
+    res.redirect('ineligible')
+  }
   const taskStatus = taskList.returnTaskStatus(req.session.data, models)
-  console.log('taskStatus', taskStatus)
   res.render(templatePath, { taskStatus })
 })
 

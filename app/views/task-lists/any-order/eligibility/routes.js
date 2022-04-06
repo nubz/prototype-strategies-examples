@@ -18,6 +18,7 @@ router.post('/do-you-have-a-shed', (req, res) => {
     if (req.body['has-shed'] === 'Yes') {
       res.redirect('enter-shed-height')
     } else {
+      req.session.data.ineligible = true
       res.redirect('ineligible')
     }
   }
@@ -33,6 +34,7 @@ router.post('/enter-shed-height', (req, res) => {
     if (parseFloat(req.body['enter-shed-height']) > 120) {
       res.redirect('check-your-answers')
     } else {
+      req.session.data.ineligible = true
       res.redirect('ineligible')
     }
   }
@@ -40,6 +42,10 @@ router.post('/enter-shed-height', (req, res) => {
 
 router.post('/check-your-answers', (req, res) => {
   res.redirect('../task-list')
+})
+
+router.get('/ineligible', (req, res) => {
+  res.render(templatePath + '/ineligible', { back: req.headers.referer })
 })
 
 module.exports = router

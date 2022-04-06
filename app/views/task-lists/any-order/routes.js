@@ -13,11 +13,20 @@ router.get('/', (req, res) => {
   res.render('any-order/index', { folder: 'task-lists' })
 })
 
-router.get('/task-list', (req, res) => {
-  const taskStatus = taskList.returnTaskStatus(req.session.data, models)
-  console.log('taskStatus', taskStatus)
-  res.render(templatePath, { taskStatus })
+router.get('/start-again', (req, res) => {
+  req.session.destroy()
+  res.redirect('task-list')
 })
+
+router.get('/task-list', (req, res) => {
+  if (req.session.data.ineligible) {
+    res.redirect('eligibility/ineligible')
+  } else {
+    const taskStatus = taskList.returnTaskStatus(req.session.data, models)
+    res.render(templatePath, { taskStatus })
+  }
+})
+
 
 router.use('/eligibility', require('./eligibility/routes'))
 router.use('/yourDetails', require('./yourDetails/routes'))
