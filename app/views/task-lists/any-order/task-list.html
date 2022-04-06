@@ -55,6 +55,12 @@ href: "../"
         </ul>
       </li>
     </ol>
+    {% if taskListComplete %}
+      <p class="govuk-body">
+        Now the task list is complete we can move on...
+      </p>
+      <a href="../" class="govuk-button" role="button" data-module="govuk-button">Continue</a>
+    {% endif %}
   </div>
 
 </div>

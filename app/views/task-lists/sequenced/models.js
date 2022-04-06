@@ -1,7 +1,8 @@
-module.exports = {
+const { STATUS, taskStatus } = require('@nubz/gds-task-list-ops')
+const schema = {
   eligibility: {
-    path: '/task-lists/any-order/eligibility/',
-    summaryPath: './includes/summaries/yourDetails.html',
+    path: '/task-lists/sequenced/eligibility/',
+    summaryPath: './includes/summaries/eligibility.html',
     title: 'Eligibility',
     pages: {
       'do-you-have-a-shed': {
@@ -25,7 +26,8 @@ module.exports = {
     }
   },
   yourDetails: {
-    path: '/task-lists/any-order/yourDetails/',
+    includeIf: data => taskStatus(data, schema.eligibility) === STATUS.COMPLETE,
+    path: '/task-lists/sequenced/yourDetails/',
     summaryPath: './includes/summaries/yourDetails.html',
     title: 'Your details',
     pages: {
@@ -57,3 +59,5 @@ module.exports = {
     }
   }
 }
+
+module.exports = { schema }

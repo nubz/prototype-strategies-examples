@@ -23,7 +23,8 @@ router.get('/task-list', (req, res) => {
     res.redirect('eligibility/ineligible')
   } else {
     const taskStatus = taskList.returnTaskStatus(req.session.data, models)
-    res.render(templatePath, { taskStatus })
+    const taskListComplete = taskList.taskListComplete(req.session.data, models)
+    res.render(templatePath, { taskStatus, taskListComplete })
   }
 })
 

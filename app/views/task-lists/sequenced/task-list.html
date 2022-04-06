@@ -1,7 +1,7 @@
 {% extends "layout_unbranded.html" %}
 
 {% set title %}
-Any order task list
+Sequenced task list
 {% endset -%}
 
 {% block beforeContent %}
@@ -16,11 +16,11 @@ href: "../"
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">
-      Any order task list
+      Sequenced task list
     </h1>
 
     <p class="govuk-body">
-      You can complete these tasks in any order.
+      You cannot start the second task until the first one is complete.
     </p>
 
     <ol class="app-task-list">
@@ -55,6 +55,13 @@ href: "../"
         </ul>
       </li>
     </ol>
+
+    {% if taskListComplete %}
+      <p class="govuk-body">
+        Now the task list is complete we can move on...
+      </p>
+      <a href="../" class="govuk-button" role="button" data-module="govuk-button">Continue</a>
+    {% endif %}
   </div>
 
 </div>

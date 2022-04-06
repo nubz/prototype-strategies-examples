@@ -4,12 +4,12 @@ const validation = require('@nubz/gds-validation')
 // also become schemas for task list or whole site validations, a more ad-hoc
 // way for validating only some routes or a single route in our prototypes
 // could be to describe the page models inline instead (see textInputInlineModels)
-const models = require('../models')
+const { schema } = require('../models')
 
-const templatePath = 'task-lists/any-order/yourDetails'
+const templatePath = 'task-lists/sequenced/yourDetails'
 
 router.post('/enter-name', (req, res) => {
-  const errors = validation.getPageErrors(req.body, models.yourDetails.pages['enter-name'])
+  const errors = validation.getPageErrors(req.body, schema.yourDetails.pages['enter-name'])
   if (errors.hasErrors) {
     res.render(templatePath + '/enter-name', {
       errors
@@ -20,7 +20,7 @@ router.post('/enter-name', (req, res) => {
 })
 
 router.post('/enter-date-of-birth', (req, res) => {
-  const errors = validation.getPageErrors(req.body, models.yourDetails.pages['enter-date-of-birth'])
+  const errors = validation.getPageErrors(req.body, schema.yourDetails.pages['enter-date-of-birth'])
   if (errors.hasErrors) {
     res.render(templatePath + '/enter-date-of-birth', {
       errors

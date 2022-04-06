@@ -4,21 +4,20 @@ const taskList = require('@nubz/gds-task-list-ops')
 // also become schemas for task list or whole site validations, a more ad-hoc
 // way for validating only some routes or a single route in our prototypes
 // could be to describe the page models inline instead (see textInputInlineModels)
-const models = require('./models')
+const { schema } = require('./models')
 
-const templatePath = 'task-lists/any-order/task-list'
+const templatePath = 'task-lists/sequenced/task-list'
 
 router.get('/', (req, res) => {
   req.session.destroy()
-  res.render('any-order/index', { folder: 'task-lists' })
+  res.render('sequenced/index', { folder: 'task-lists' })
 })
 
 router.get('/task-list', (req, res) => {
-  if (req.session.data.ineligible) {
-    res.redirect('ineligible')
-  }
-  const taskStatus = taskList.returnTaskStatus(req.session.data, models)
-  res.render(templatePath, { taskStatus })
+  const taskStatus = taskList.returnTaskStatus(req.session.data, schema)
+  console.log('taskStatus = ', taskStatus)
+  const taskListComplete = taskList.taskListComplete(req.session.data, schema)
+  res.render(templatePath, { taskStatus, taskListComplete })
 })
 
 router.use('/eligibility', require('./eligibility/routes'))
