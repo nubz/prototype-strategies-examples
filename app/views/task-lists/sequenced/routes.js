@@ -10,6 +10,11 @@ router.get('/', (req, res) => {
   res.render('sequenced/index', { folder: 'task-lists' })
 })
 
+router.get('/start-again', (req, res) => {
+  req.session.destroy()
+  res.redirect('task-list')
+})
+
 router.get('/task-list', (req, res) => {
   const taskStatus = taskList.returnTaskStatus(req.session.data, schema)
   console.log('taskStatus = ', taskStatus)

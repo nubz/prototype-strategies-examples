@@ -42,4 +42,8 @@ router.post('/check-your-answers', (req, res) => {
   res.redirect('../task-list')
 })
 
+router.get('/ineligible', (req, res) => {
+  res.render(templatePath + '/ineligible', { back: req.headers.referer })
+})
+
 module.exports = router
