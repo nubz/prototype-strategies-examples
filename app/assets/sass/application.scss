@@ -32,6 +32,16 @@ body > header {
   }
 }
 
+.govuk-details__text {
+  pre {
+    display: inline-block;
+    padding: 0.2em;
+    background: #eee;
+    margin: 0;
+    font-size: 0.7em;
+  }
+}
+
 .show-model {
   pre {
     padding: 0.5em;

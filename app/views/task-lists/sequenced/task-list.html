@@ -1,9 +1,5 @@
 {% extends "layout_unbranded.html" %}
 
-{% set title %}
-Sequenced task list
-{% endset -%}
-
 {% block beforeContent %}
 {{ govukBackLink({
 text: "Back",
@@ -18,10 +14,6 @@ href: "../"
     <h1 class="govuk-heading-xl">
       Sequenced task list
     </h1>
-
-    <p class="govuk-body">
-      The tasks marked as cannot start will become available to start when you have completed the preceding task
-    </p>
 
     <ol class="app-task-list">
       <li>
@@ -67,14 +59,21 @@ href: "../"
       <a href="../" class="govuk-button" role="button" data-module="govuk-button">Continue</a>
     {% endif %}
 
+    <hr class="govuk-!-margin-bottom-9" />
+
     {{ govukDetails({
-    summaryText: "Schema for this task list",
-    html: demoModel | prettySchema
+      summaryText: "Notes",
+      html: "This schema imports 2 useful things from the <pre>@nubz/gds-task-list-ops</pre> package, <pre>STATUS</pre> and <pre>taskStatus</pre> and then tasks can access values about the <pre>STATUS</pre> of other tasks in their <pre>includeIf</pre> rule, any tasks that return false with their <pre>includeIf</pre> method will have the status <pre>CANNOT_START</pre>"
     }) }}
 
     {{ govukDetails({
-    summaryText: "Task list status",
-    html: demoTaskStatus | prettyStatus
+      summaryText: "Schema for this task list",
+      html: demoModel | prettySchema
+    }) }}
+
+    {{ govukDetails({
+      summaryText: "Task list status",
+      html: demoTaskStatus | prettyStatus
     }) }}
 
   </div>
