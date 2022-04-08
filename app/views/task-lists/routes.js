@@ -6,4 +6,5 @@ router.get('/', function (req, res) {
 router.use('/any-order', require('./any-order/routes'))
 router.use('/sequenced', require('./sequenced/routes'))
 router.use('/with-cya', require('./with-cya/routes'))
+router.use('/with-conditional-page', require('./with-conditional-page/routes'))
 module.exports = router

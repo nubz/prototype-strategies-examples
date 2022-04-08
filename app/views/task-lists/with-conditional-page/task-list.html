@@ -1,0 +1,89 @@
+{% extends "layout_unbranded.html" %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "../"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      Task list with CYA task
+    </h1>
+
+    <ol class="app-task-list">
+      <li>
+        <h2 class="app-task-list__section">
+          <span class="app-task-list__section-number">
+            1.
+          </span>
+          Before you start
+        </h2>
+
+        <ul class="app-task-list__items">
+          <li class="app-task-list__item">
+            {{ taskListMacros.taskLink(taskStatus.eligibility) }}
+            {{ taskListMacros.status(taskStatus.eligibility.status) }}
+          </li>
+          <li class="app-task-list__item">
+            {{ taskListMacros.taskLink(taskStatus.yourDetails) }}
+            {{ taskListMacros.status(taskStatus.yourDetails.status) }}
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <h2 class="app-task-list__section">
+          <span class="app-task-list__section-number">
+            2.
+          </span>
+          About your shed
+        </h2>
+        <ul class="app-task-list__items">
+          <li class="app-task-list__item">
+            {{ taskListMacros.taskLink(taskStatus.aboutShed) }}
+            {{ taskListMacros.status(taskStatus.aboutShed.status) }}
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h2 class="app-task-list__section">
+          <span class="app-task-list__section-number">
+            3.
+          </span>
+          Declaration
+        </h2>
+        <ul class="app-task-list__items">
+          <li class="app-task-list__item">
+            {{ taskListMacros.taskLink(taskStatus.cya) }}
+            {{ taskListMacros.status(taskStatus.cya.status) }}
+          </li>
+        </ul>
+      </li>
+    </ol>
+
+    <hr class="govuk-!-margin-bottom-9" />
+
+    {{ govukDetails({
+      summaryText: "Notes",
+      html: "Page models can contain an <pre>includeIf</pre> function that returns a boolean based on whether a certain value exists, pages who's <pre>includeIf</pre> returns false get excluded from the validation whilst assessing task status. In the schema we can see that the <pre>'how-many-windows'</pre> page has an <pre>includeIf</pre> method meaning if <pre>'shed-built'</pre> equals <pre>Yes</pre> then it should be validated."
+    }) }}
+
+    {{ govukDetails({
+      summaryText: "Schema for this task list",
+      html: demoModel | prettySchema
+    }) }}
+
+    {{ govukDetails({
+      summaryText: "Task list status",
+      html: demoTaskStatus | prettyStatus
+    }) }}
+
+  </div>
+</div>
+
+{% endblock %}

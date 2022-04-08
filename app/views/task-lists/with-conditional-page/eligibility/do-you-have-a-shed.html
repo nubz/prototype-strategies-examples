@@ -1,0 +1,57 @@
+{% extends "layout_unbranded.html" %}
+{% block pageTitle %}
+{% if errors %} Error: {% endif %}Do you have a shed?
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "../task-list"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ errorMacros.summary({errors: errors.summary}) }}
+    <span class="govuk-caption govuk-caption-l">Eligibility</span>
+    <form action="?" method="post">
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        idPrefix: "has-shed",
+        name: "has-shed",
+        fieldset: {
+        legend: {
+          text: "Do you own a shed?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+        },
+        hint: {
+          text: "This can include summer houses and garden offices."
+        },
+        errorMessage: errors.inline['has-shed'],
+        items: [
+          {
+            value: "Yes",
+            text: "Yes",
+            checked: data['has-shed'] === 'Yes'
+          },
+          {
+            value: "No",
+            text: "No",
+            checked: data['has-shed'] === 'No'
+          }
+        ]
+      }) }}
+
+      <button class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+    {{ taskListMacros.returnToSummary() }}
+  </div>
+</div>
+
+{% endblock %}

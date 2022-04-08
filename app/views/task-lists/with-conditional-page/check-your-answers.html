@@ -1,0 +1,43 @@
+{% extends "layout_unbranded.html" %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "task-list"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+        <h1 class="govuk-heading-xl">
+            Check your answers
+        </h1>
+
+        {% for name, section in schema %}
+        <h2 class="govuk-heading-m">
+            {{ section.title }}
+        </h2>
+        {% include section.summaryPath %}
+        {% endfor %}
+
+
+        <h2 class="govuk-heading-m">
+            Declaration
+        </h2>
+
+        <p>
+            By continuing you are confirming that, to the best of your knowledge, the details you are providing are correct.
+        </p>
+
+        <form action="../" method="post" novalidate>
+            <input type="hidden" name="answers-checked" value="true">
+            <button type="submit" class="govuk-button">
+                Accept and send
+            </button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "layout_unbranded.html" %}
+{% block pageTitle %}
+{% if errors %} Error: {% endif %}Is the shed outdoors?
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "./"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ errorMacros.summary({errors: errors.summary}) }}
+    <span class="govuk-caption govuk-caption-l">About your shed</span>
+    <form action="?" method="post">
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        idPrefix: "shed-outdoors",
+        name: "shed-outdoors",
+        fieldset: {
+        legend: {
+          text: "Is the shed outdoors?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+        },
+        errorMessage: errors.inline['shed-outdoors'],
+        items: [
+          {
+            value: "Yes",
+            text: "Yes",
+            checked: data['shed-outdoors'] === 'Yes'
+          },
+          {
+            value: "No",
+            text: "No",
+            checked: data['shed-outdoors'] === 'No'
+          }
+        ]
+      }) }}
+
+      <button class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+    {{ taskListMacros.returnToSummary() }}
+  </div>
+</div>
+
+{% endblock %}
