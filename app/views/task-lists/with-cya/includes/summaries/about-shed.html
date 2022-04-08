@@ -1,0 +1,49 @@
+<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Is the shed outdoors?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['shed-outdoors'] }}
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a href="{{schema.aboutShed.path}}is-shed-outdoors">
+        Change
+        <span class="govuk-visually-hidden"> if your shed is outdoors</span>
+      </a>
+
+    </dd>
+  </div>
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Is the shed built?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['shed-built'] }}
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a href="{{schema.aboutShed.path}}is-shed-built">
+        Change
+        <span class="govuk-visually-hidden"> if your shed is built</span>
+      </a>
+
+    </dd>
+  </div>
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      How many windows does your shed have?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['how-many-windows'] }}
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a href="{{schema.aboutShed.path}}how-many-windows">
+        Change
+        <span class="govuk-visually-hidden"> how many windows</span>
+      </a>
+    </dd>
+  </div>
+
+</dl>

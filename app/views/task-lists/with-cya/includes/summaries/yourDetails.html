@@ -1,0 +1,33 @@
+<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        What is your full name?
+      </dt>
+      <dd class="govuk-summary-list__value">
+        {{ data['full-name'] }}
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a href="{{schema.yourDetails.path}}enter-name">
+          Change
+          <span class="govuk-visually-hidden"> your full name</span>
+        </a>
+
+      </dd>
+    </div>
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      What is your date of birth?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['date-of-birth-day'] }} {{ data['date-of-birth-month'] }} {{ data['date-of-birth-year'] }}
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a href="{{schema.yourDetails.path}}enter-date-of-birth">
+        Change
+        <span class="govuk-visually-hidden"> your date of birth</span>
+      </a>
+    </dd>
+  </div>
+
+</dl>

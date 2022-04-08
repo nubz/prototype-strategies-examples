@@ -1,0 +1,41 @@
+{% extends "layout_unbranded.html" %}
+{% block pageTitle %}
+{% if errors %} Error: {% endif %}What is your full name?
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "../task-list"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ errorMacros.summary({errors: errors.summary}) }}
+    <span class="govuk-caption govuk-caption-l">Provide details</span>
+    <form action="?" method="post">
+      {{ govukInput({
+        id: "full-name",
+        name: "full-name",
+        label: {
+          text: "What is your full name?",
+          isPageHeading: true,
+          classes: "govuk-label--xl"
+        },
+        errorMessage: errors.inline['full-name'],
+        spellcheck: false,
+        value: data['full-name']
+      }) }}
+
+      <button class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+    {{ taskListMacros.returnToSummary() }}
+  </div>
+</div>
+
+{% endblock %}
