@@ -47,10 +47,7 @@
         Continue
       </button>
     </form>
-    {{ govukDetails({
-      summaryText: "Page model for this validation",
-      html: demoModel | prettyModel
-    }) }}
+    {{ taskListMacros.returnToSummary() }}
   </div>
 </div>
 
