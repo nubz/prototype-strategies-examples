@@ -30,7 +30,7 @@
         hint: {
           text: "For example, 27 3 2017"
         },
-        errorMessage: errors.njk.earliest,
+        errorMessage: errors.inline.earliest,
         items: [
           {
             classes: errors.inline.earliest.inputs | dateErrorClasses('day'),
@@ -63,7 +63,7 @@
         hint: {
           text: "For example, 27 3 2017"
         },
-        errorMessage: errors.njk.latest,
+        errorMessage: errors.inline.latest,
         items: [
           {
             classes: errors.inline.latest.inputs | dateErrorClasses('day'),
@@ -97,7 +97,7 @@
         hint: {
           text: "For example, 27 3 2017"
         },
-        errorMessage: errors.njk.bought,
+        errorMessage: errors.inline.bought,
         items: [
           {
             classes: errors.inline.bought.inputs | dateErrorClasses('day'),
