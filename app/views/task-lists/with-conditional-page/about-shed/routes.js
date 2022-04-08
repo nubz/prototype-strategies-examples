@@ -25,6 +25,7 @@ router.post('/is-shed-built', (req, res) => {
     if (req.body['shed-built'] === 'Yes') {
       res.redirect('how-many-windows')
     } else {
+      delete req.session.data['how-many-windows']
       res.redirect('check-your-answers')
     }
 
