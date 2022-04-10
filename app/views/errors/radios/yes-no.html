@@ -47,10 +47,12 @@
         Continue
       </button>
     </form>
-    {{ govukDetails({
-      summaryText: "Page model for this validation",
-      html: demoModel | prettyModel
-    }) }}
+    <div class="meta">
+      {{ govukDetails({
+        summaryText: "Page model for this validation",
+        html: demoModel | prettyModel
+      }) }}
+    </div>
   </div>
 </div>
 

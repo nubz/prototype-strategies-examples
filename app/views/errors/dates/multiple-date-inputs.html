@@ -121,15 +121,17 @@
         Continue
       </button>
     </form>
-    {{ govukDetails({
-      summaryText: "Page model for this validation",
-      html: demoModel | prettyModel
-    }) }}
+    <div class="meta">
+      {{ govukDetails({
+        summaryText: "Page model for this validation",
+        html: demoModel | prettyModel
+      }) }}
 
-    {{ govukDetails({
-      summaryText: "Filter to show which date inputs are in error",
-      html: dateErrorClasses | prettyFilter
-    }) }}
+      {{ govukDetails({
+        summaryText: "Filter to show which date inputs are in error",
+        html: dateErrorClasses | prettyFilter
+      }) }}
+    </div>
   </div>
 </div>
 

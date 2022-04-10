@@ -61,10 +61,12 @@ href: "./"
                 Continue
             </button>
         </form>
-        {{ govukDetails({
+        <div class="meta">
+            {{ govukDetails({
             summaryText: "Page model for this validation",
             html: demoModel | prettyModel
-        }) }}
+            }) }}
+        </div>
     </div>
 </div>
 

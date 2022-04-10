@@ -68,25 +68,26 @@ href: "../"
       </li>
     </ol>
 
-    <hr class="govuk-!-margin-bottom-9" />
+    <div class="meta">
 
-    {{ govukDetails({
-      summaryText: "Notes",
-      html: "Page models can contain an <pre>includeIf</pre> function that returns a boolean based on whether a certain value exists, pages who's <pre>includeIf</pre> returns false get excluded from the validation whilst assessing task status. In the schema we can see that the <pre>'how-many-windows'</pre> page has an <pre>includeIf</pre> method meaning if <pre>'shed-built'</pre> equals <pre>Yes</pre> then it should be validated."
-    }) }}
+      {{ govukDetails({
+        summaryText: "Notes",
+        html: "Page models can contain an <pre>includeIf</pre> function that returns a boolean based on whether a certain value exists, pages who's <pre>includeIf</pre> returns false get excluded from the validation whilst assessing task status. In the schema we can see that the <pre>'how-many-windows'</pre> page has an <pre>includeIf</pre> method meaning if <pre>'shed-built'</pre> equals <pre>Yes</pre> then it should be validated."
+      }) }}
 
-    {{ govukDetails({
-      summaryText: "Schema for this task list",
-      html: demoModel | prettySchema
-    }) }}
+      {{ govukDetails({
+        summaryText: "Schema for this task list",
+        html: demoModel | prettySchema
+      }) }}
 
-    {{ govukDetails({
-      summaryText: "Task list status",
-      html: demoTaskStatus | prettyStatus
-    }) }}
+      {{ govukDetails({
+        summaryText: "Task list status",
+        html: demoTaskStatus | prettyStatus
+      }) }}
 
-    <a href="https://github.com/nubz/prototype-strategies-examples/tree/main/app/views/task-lists/with-conditional-page" rel="noopener noreferrer" target="_blank">View the code for this task list</a>
+      <a href="https://github.com/nubz/prototype-strategies-examples/tree/main/app/views/task-lists/with-conditional-page" rel="noopener noreferrer" target="_blank">View the code for this task list</a>
 
+    </div>
   </div>
 </div>
 

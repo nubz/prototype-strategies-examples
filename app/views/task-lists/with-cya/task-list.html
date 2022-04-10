@@ -66,25 +66,26 @@ href: "../"
       </li>
     </ol>
 
-    <hr class="govuk-!-margin-bottom-9" />
+    <div class="meta">
 
-    {{ govukDetails({
-      summaryText: "Notes",
-      html: "By default the <pre>returnTaskStatus</pre> method gives us the status of a generic <pre>cya</pre> task. Storing all the summaries for each task in a common folder and putting the path to each summary in each model allows us to aggregate them into a single Check Your Answers page that can only be started when the task list is complete."
-    }) }}
+      {{ govukDetails({
+        summaryText: "Notes",
+        html: "By default the <pre>returnTaskStatus</pre> method gives us the status of a generic <pre>cya</pre> task. Storing all the summaries for each task in a common folder and putting the path to each summary in each model allows us to aggregate them into a single Check Your Answers page that can only be started when the task list is complete."
+      }) }}
 
-    {{ govukDetails({
-      summaryText: "Schema for this task list",
-      html: demoModel | prettySchema
-    }) }}
+      {{ govukDetails({
+        summaryText: "Schema for this task list",
+        html: demoModel | prettySchema
+      }) }}
 
-    {{ govukDetails({
-      summaryText: "Task list status",
-      html: demoTaskStatus | prettyStatus
-    }) }}
+      {{ govukDetails({
+        summaryText: "Task list status",
+        html: demoTaskStatus | prettyStatus
+      }) }}
 
-    <a href="https://github.com/nubz/prototype-strategies-examples/tree/main/app/views/task-lists/with-cya" rel="noopener noreferrer" target="_blank">View the code for this task list</a>
+      <a href="https://github.com/nubz/prototype-strategies-examples/tree/main/app/views/task-lists/with-cya" rel="noopener noreferrer" target="_blank">View the code for this task list</a>
 
+    </div>
   </div>
 </div>
 

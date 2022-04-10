@@ -59,25 +59,26 @@ href: "../"
       <a href="../" class="govuk-button" role="button" data-module="govuk-button">Continue</a>
     {% endif %}
 
-    <hr class="govuk-!-margin-bottom-9" />
+    <div class="meta">
 
-    {{ govukDetails({
-      summaryText: "Notes",
-      html: "This schema imports 2 useful things from the <pre>@nubz/gds-task-list-ops</pre> package, <pre>STATUS</pre> and <pre>taskStatus</pre> and then tasks can access values about the <pre>STATUS</pre> of other tasks in their <pre>includeIf</pre> rule, any tasks that return false with their <pre>includeIf</pre> method will have the status <pre>CANNOT_START</pre>"
-    }) }}
+      {{ govukDetails({
+        summaryText: "Notes",
+        html: "This schema imports 2 useful things from the <pre>@nubz/gds-task-list-ops</pre> package, <pre>STATUS</pre> and <pre>taskStatus</pre> and then tasks can access values about the <pre>STATUS</pre> of other tasks in their <pre>includeIf</pre> rule, any tasks that return false with their <pre>includeIf</pre> method will have the status <pre>CANNOT_START</pre>"
+      }) }}
 
-    {{ govukDetails({
-      summaryText: "Schema for this task list",
-      html: demoModel | prettySchema
-    }) }}
+      {{ govukDetails({
+        summaryText: "Schema for this task list",
+        html: demoModel | prettySchema
+      }) }}
 
-    {{ govukDetails({
-      summaryText: "Task list status",
-      html: demoTaskStatus | prettyStatus
-    }) }}
+      {{ govukDetails({
+        summaryText: "Task list status",
+        html: demoTaskStatus | prettyStatus
+      }) }}
 
-    <a href="https://github.com/nubz/prototype-strategies-examples/tree/main/app/views/task-lists/sequenced" rel="noopener noreferrer" target="_blank">View the code for this task list</a>
+      <a href="https://github.com/nubz/prototype-strategies-examples/tree/main/app/views/task-lists/sequenced" rel="noopener noreferrer" target="_blank">View the code for this task list</a>
 
+    </div>
   </div>
 </div>
 

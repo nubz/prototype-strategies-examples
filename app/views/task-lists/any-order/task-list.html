@@ -62,17 +62,21 @@ href: "../"
       <a href="../" class="govuk-button" role="button" data-module="govuk-button">Continue</a>
     {% endif %}
 
-    {{ govukDetails({
-      summaryText: "Schema for this task list",
-      html: demoModel | prettySchema
-    }) }}
+    <div class="meta">
 
-    {{ govukDetails({
-      summaryText: "Task list status",
-      html: demoTaskStatus | prettyStatus
-    }) }}
+      {{ govukDetails({
+        summaryText: "Schema for this task list",
+        html: demoModel | prettySchema
+      }) }}
 
-    <a href="https://github.com/nubz/prototype-strategies-examples/tree/main/app/views/task-lists/any-order" rel="noopener noreferrer" target="_blank">View the code for this task list</a>
+      {{ govukDetails({
+        summaryText: "Task list status",
+        html: demoTaskStatus | prettyStatus
+        }) }}
+
+      <a href="https://github.com/nubz/prototype-strategies-examples/tree/main/app/views/task-lists/any-order" rel="noopener noreferrer" target="_blank">View the code for this task list</a>
+
+    </div>
 
   </div>
 </div>

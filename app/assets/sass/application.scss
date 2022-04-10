@@ -46,6 +46,7 @@ body > header {
     background: #eee;
     font-size: 0.7em;
     overflow-x: auto;
+    max-width: 100%;
   }
 }
 
@@ -69,4 +70,10 @@ body > header {
 
 .completed {
   background-color: #1d70b8;
+}
+
+.meta {
+  background: #eff;
+  border-top: 1px solid #777;
+  padding: 1em;
 }
