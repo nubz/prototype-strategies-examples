@@ -32,7 +32,7 @@ body > header {
   }
 }
 
-.govuk-details__text pre, .govuk-body pre {
+.govuk-details__text pre, .govuk-body pre, span.pre {
   display: inline-block;
   padding: 0.2em;
   background: #eee;
@@ -46,7 +46,7 @@ body > header {
     background: #eee;
     font-size: 0.7em;
     overflow-x: auto;
-    max-width: 100%;
+    max-width: 96%;
   }
 }
 

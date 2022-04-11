@@ -28,8 +28,42 @@
           consumed by existing design system error components such as govukErrorSummary.
         </p>
 
+        <h2 class="govuk-heading-m">
+          Why error handling in prototypes?
+        </h2>
+
+        <p class="govuk-body">
+          There are definitely good reasons to not bother validating for errors in a prototype, but in some prototypes,
+          particularly those with calculations or branching based on user input, using error handling can:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>allow research participants to recover from mistakes without spoiling the research session and even add value to the research</li>
+          <li>allow business rules to be tested with users</li>
+        </ul>
+
+        <p class="govuk-body">
+          One of the main reasons to avoid error handling in prototypes is the amount of work required to set it up,
+          hopefully the <span class="pre">@nubz/gds-validation</span> package can help minimise that.
+        </p>
+        <p class="govuk-body">
+          The validations are all baked in and by default return  error message content templated to the GOV.UK Design System guidelines.
+          The only work to do is decide how to describe each field to the system and encode the rules in quite simple models we validate
+          against. Each example on this site contains a copy of the actual page model used to validate against.
+        </p>
+
+        <h2 class="govuk-heading-m">
+          Steps to implement error handling
+        </h2>
+
+        <ol class="govuk-list govuk-list--number">
+          <li>include the library in the prototype <span class="pre">npm i @nubz/gds-validation</span></li>
+          <li>create models that describe the business rules for each page that needs validation</li>
+          <li>add a route handler to catch the form post that validates the inputs against the models</li>
+          <li>have error components/macros in the form template ready to catch and display any errors</li>
+        </ol>
+
         <p>
-          The template, routing and model code for all examples can be
+          The template, routing and model code for all examples on this site can be
           <a href="https://github.com/nubz/prototype-strategies-examples/blob/main/app/views/errors/" rel="noreferrer noopener" target="_blank">seen on Github</a>.
         </p>
       {% endif %}
