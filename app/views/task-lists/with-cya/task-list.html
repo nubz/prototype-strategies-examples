@@ -69,13 +69,13 @@ href: "../"
     <div class="meta">
 
       {{ govukDetails({
-        summaryText: "Notes",
-        html: "By default the <pre>returnTaskStatus</pre> method gives us the status of a generic <pre>cya</pre> task. Storing all the summaries for each task in a common folder and putting the path to each summary in each model allows us to aggregate them into a single Check Your Answers page that can only be started when the task list is complete."
+        summaryText: "Schema for this task list",
+        html: demoModel | prettySchema
       }) }}
 
       {{ govukDetails({
-        summaryText: "Schema for this task list",
-        html: demoModel | prettySchema
+        summaryText: "Notes",
+        html: "<p class='govuk-body'>By default the <pre>returnTaskStatus()</pre> method in this package gives us the status of a generic <pre>cya</pre> task, we can choose to represent this as a task in our template or not.</p><p class='govuk-body'>Storing all the summaries for each task in a common folder and putting the path to each summary in each task model allows us to aggregate all the included summaries into a single Check Your Answers page, should we want one.</p>"
       }) }}
 
       {{ govukDetails({
