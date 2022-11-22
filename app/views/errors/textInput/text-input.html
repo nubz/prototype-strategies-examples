@@ -17,7 +17,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     {{ errorMacros.summary({errors: errors.summary}) }}
-    <form action="?" method="post">
+    <form action="?" method="post" novalidate>
       <div class="govuk-form-group{% if errors.inline['company-name'] %} govuk-form-group--error{% endif %}">
         <h1 class="govuk-label-wrapper">
           <label class="govuk-label govuk-label--xl" for="company-name">

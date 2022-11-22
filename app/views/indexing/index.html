@@ -1,0 +1,57 @@
+
+{% extends "layout_unbranded.html" %}
+
+{% block pageTitle %}
+Indexing - Prototype strategies examples
+{% endblock %}
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "../"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+        {% if folder %}
+        {% include "./" + folder + "/index.html" %}
+        {% else %}
+        <h1 class="govuk-heading-xl">
+            Indexing examples
+        </h1>
+        <p class="govuk-body">
+            Why bother with versions? Why not just keep designing forward and overwriting the old designs? Some possible reasons:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>versions provide snapshots of each iteration</li>
+            <li>versions enable the journeys tested with users to be used in the future</li>
+            <li>versions tell the story</li>
+        </ul>
+        <p class="govuk-body">
+            A system for organising prototype designs and journeys by versions. Consideration in this
+            system has been given to the representation of change across versions.
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>indexing all of the pages in each version</li>
+            <li>keeping track of changes between versions</li>
+            <li>comparing versions of the same page across versions</li>
+        </ul>
+
+        <p>
+            The template, routing and model code for all examples can be
+            <a href="https://github.com/nubz/prototype-strategies-examples/blob/main/app/views/indexing/" rel="noreferrer noopener" target="_blank">seen on Github</a>.
+        </p>
+        {% endif %}
+
+    </div>
+    <div class="govuk-grid-column-one-quarter">
+        <h2 class="govuk-heading-s app-related-items">Indexing examples</h2>
+        <ul class="govuk-list">
+            <li><a href="#" class="govuk-link">Example index</a></li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

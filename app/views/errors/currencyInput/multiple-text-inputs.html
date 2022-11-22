@@ -16,7 +16,7 @@ href: "./"
     <div class="govuk-grid-column-two-thirds">
         {{ errorMacros.summary({errors: errors.summary}) }}
         <h1 class="govuk-heading-xl">Managing money</h1>
-        <form action="?" method="post">
+        <form action="?" method="post" novalidate>
             {{ govukInput({
                 id: "amountInBank",
                 name: "amountInBank",

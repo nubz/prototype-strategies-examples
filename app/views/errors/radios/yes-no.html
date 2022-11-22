@@ -15,7 +15,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     {{ errorMacros.summary({errors: errors.summary}) }}
-    <form action="?" method="post">
+    <form action="?" method="post" novalidate>
       {{ govukRadios({
         classes: "govuk-radios--inline",
         idPrefix: "own-a-shed",
